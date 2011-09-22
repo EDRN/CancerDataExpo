@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# Establish ssh tunnel for port 1433 (SQL Server) from this host to the
+# EDRN Data Mgmt Coordinating Center (DMCC).
+
+if [ $# -ne 1 ]; then
+    echo Usage: `basename $0` keyfile 1>&2
+    exit 1
+fi
+shutdown() {
+    ssh-agent -k
+}
+trap shutdown hup int quit term
+eval `ssh-agent -s`
+ssh-add "$1"
+exec ssh -L 1433:compass1.fhcrc.org:1433 -i "$1" -N ssc@snail.fhcrc.org

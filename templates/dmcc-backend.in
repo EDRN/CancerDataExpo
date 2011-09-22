@@ -1,0 +1,46 @@
+#!/bin/sh
+#
+# Early Detection Research Network (EDRN) Informatics Center (IC)
+# Backend Management for the Data Management & Coordinating Center (DMCC)
+#
+# Starts & stops the DMCC Backend Supervisor, which in turn monitors and
+# controls all of the processes necessary to run the DMCC Backend.
+#
+# chkconfig: 345 87 12
+# description: DMCC Backend Supervisor
+
+home="${buildout:directory}"
+bin="${dollar}{home}/bin"
+supervisord="${dollar}{bin}/supervisord"
+supervisorctl="${dollar}{bin}/supervisorctl"
+python="/usr/local/python"
+LD_LIBRARY_PATH="${dollar}{python}/parts/ops/lib"
+export LD_LIBRARY_PATH
+
+case "${dollar}1" in
+start)
+        echo "Starting DMCC Backend Supervisor"
+        "${dollar}supervisord"
+        ;;
+stop)
+        echo "Stopping DMCC Backend Supervisor"
+        "${dollar}supervisorctl" shutdown
+        ;;
+restart)
+        echo "Restarting DMCC Backend Supervisor"
+        "${dollar}supervisorctl" shutdown
+        /bin/sleep 5
+        "${dollar}supervisord"
+        ;;
+graceful)
+        echo "Restarting EDRN processes under existing Supervisor"
+        "${dollar}supervisorctl" restart all
+        ;;
+status)
+        "${dollar}supervisorctl" status
+        ;;
+*)
+        echo "Usage: ${dollar}0 {start|stop|restart|graceful|status}" 1>&2
+        ;;
+esac
+exit 0
