@@ -11,10 +11,11 @@ vital to the Early Detection Research Network (EDRN_).  The Informatics Center
 These services include:
 
 * Directory lookup backend for EDRN members via LDAP
+* EDRN knowledge environment information via RDF
 
 In the future, these services will include:
 
-* EDRN knowledge environment information via RDF
+* TBD.
 
 The remainder of this document tells how to set up this software.
 
@@ -39,8 +40,18 @@ To deploy this software, do the following:
 5. Install the init script:
    ``install -o root -g root -m 755 bin/dmcc-backend /etc/init.d``
 6. Add to chkconfig: ``chkconfig --add dmcc-backend``
+7. Set ownership: ``chown -R edrn parts var``.
 
-You can then start it up: ``service dmcc-backend start``.
+You'll need to run the tunnel as root by hand once in order for ssh to
+question the authenticity of snail.fhcrc.org's RSA key.  The key fingerprint
+should be::
+
+    c4:c3:d0:b1:b7:f6:48:2b:51:79:fa:14:cd:a5:52:d4
+
+Once the key's accepted and you see the FHCRC warning banner, interrupt the
+tunnel (CTRL+C).  You can then start everything up normally with::
+
+    service dmcc-backend start
 
 
 Configuring LDAP
