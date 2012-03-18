@@ -27,6 +27,10 @@ This software requires Python_ 2.6.  On the host cancer.jpl.nasa.gov, a
 compatible Python is available in /usr/local/python/parts/opt/bin/python2.6.
 Or you can use a compatible virtualenv_.
 
+Don't put Varnish in front of Apache in front of the Zope instance in this
+configuration.  Some RDF requests take longer than 5 minutes, and Varnish will
+punt on them.
+
 
 Deployment
 ==========
