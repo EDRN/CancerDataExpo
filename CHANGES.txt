@@ -1,0 +1,6 @@
+Release Notes - Early Detection of Cancer - Version DMCC Backend Apps 1.0.1
+
+** New Feature
+    * [CA-915] - Update tunnel hostname for DMCC SQL Server
+
+
