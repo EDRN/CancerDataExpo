@@ -10,12 +10,17 @@ vital to the Early Detection Research Network (EDRN_).  The Informatics Center
 
 These services include:
 
-* Directory lookup backend for EDRN members via LDAP
 * EDRN knowledge environment information via RDF
 
 In the future, these services will include:
 
 * TBD.
+
+Previous versions included:
+
+* Directory lookup backend for EDRN members via LDAP—no longer necessary
+  thanks to the DMCC Authorization Interceptor running in Apache Directory
+  Server.
 
 The remainder of this document tells how to set up this software.
 
@@ -23,13 +28,13 @@ The remainder of this document tells how to set up this software.
 Requirements
 ============
 
-This software requires Python_ 2.6.  On the host cancer.jpl.nasa.gov, a
-compatible Python is available in /usr/local/python/parts/opt/bin/python2.6.
+This software requires Python_ 2.7.  On the host cancer.jpl.nasa.gov, a
+compatible Python is available in /usr/local/python/parts/opt/bin/python2.7.
 Or you can use a compatible virtualenv_.
 
-Don't put Varnish in front of Apache in front of the Zope instance in this
-configuration.  Some RDF requests take longer than 5 minutes, and Varnish will
-punt on them.
+If a reverse proxy accelerator (such as the Varnish Cache) runs in front of
+the DMCC Backend, please configure it to not cache the RDF data produced by
+the backend.
 
 
 Deployment
@@ -39,47 +44,20 @@ To deploy this software, do the following:
 
 1. Extract it to a convenient location, say /usr/local/dmcc-backend.
 2. Change the current working directory to that location.
-3. Bootstrap it: ``python2.6 bootstrap.py -d``
-4. Build it: ``bin/buildout``
+3. Bootstrap it: ``python2.7 bootstrap.py -d``
+4. Build it: ``bin/buildout -c ops.cfg``
+5. Create the app server instance:
+   ``bin/buildout -c ops.cfg install dmcc-appserver``
 5. Install the init script:
    ``install -o root -g root -m 755 bin/dmcc-backend /etc/init.d``
+6. Install the cron job:
+   ``install -o root -g root -m 755 bin/update-rdf /etc/cron.daily/edrn-update-rdf``
 6. Add to chkconfig: ``chkconfig --add dmcc-backend``
 7. Set ownership: ``chown -R edrn parts var``.
 
-You'll need to run the tunnel as root by hand once in order for ssh to
-question the authenticity of snail.fhcrc.org's RSA key.  The key fingerprint
-should be::
-
-    c4:c3:d0:b1:b7:f6:48:2b:51:79:fa:14:cd:a5:52:d4
-
-Once the key's accepted and you see the FHCRC warning banner, interrupt the
-tunnel (CTRL+C).  You can then start everything up normally with::
+You can then start it all up with::
 
     service dmcc-backend start
-
-
-Configuring LDAP
-================
-
-OpenLDAP's Standalone LDAP server ``slapd`` should already be configured.  If
-not, add the following lines to slapd.conf::
-
-    database shell
-    suffix "dc=edrn,dc=jpl,dc=nasa,dc=gov"
-    rootdn "cn=Manager,dc=edrn,dc=jpl,dc=nasa,dc=gov" rootpw secret
-    add /usr/local/dmcc-backend/bin/edrnDMCCSlapd -c /usr/local/dmcc-backend/etc/ldap.cfg
-    bind /usr/local/dmcc-backend/bin/edrnDMCCSlapd -c /usr/local/dmcc-backend/etc/ldap.cfg 
-    compare /usr/local/dmcc-backend/bin/edrnDMCCSlapd -c /usr/local/dmcc-backend/etc/ldap.cfg
-    delete /usr/local/dmcc-backend/bin/edrnDMCCSlapd -c /usr/local/dmcc-backend/etc/ldap.cfg
-    modify /usr/local/dmcc-backend/bin/edrnDMCCSlapd -c /usr/local/dmcc-backend/etc/ldap.cfg
-    modrdn /usr/local/dmcc-backend/bin/edrnDMCCSlapd -c /usr/local/dmcc-backend/etc/ldap.cfg
-    search /usr/local/dmcc-backend/bin/edrnDMCCSlapd -c /usr/local/dmcc-backend/etc/ldap.cfg
-    unbind /usr/local/dmcc-backend/bin/edrnDMCCSlapd -c /usr/local/dmcc-backend/etc/ldap.cfg
-    TLSCACertificateFile /usr/local/dmcc-backend/cancer-ldap.pem
-    TLSCertificateFile /usr/local/dmcc-backend/cancer-ldap.pem
-    TLSCertificateKeyFile /usr/local/dmcc-backend/cancer-ldap.pem
-
-Adjust paths as necessary.
 
 
 .. References:
