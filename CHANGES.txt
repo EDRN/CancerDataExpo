@@ -1,3 +1,10 @@
+Release Notes - Early Detection of Cancer - Version DMCC Backend Apps 1.0.2 - 2012-11-30
+
+** Bug
+    * [CA-998] - Registered Person RDF "mbox" property has a literal value, should be a reference
+    * [CA-1031] - New RDF server fails to link protocols correctly
+
+
 Release Notes - Early Detection of Cancer - Version DMCC Backend Apps 1.0.1
 
 ** New Feature
