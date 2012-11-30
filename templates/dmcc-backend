@@ -33,7 +33,7 @@ restart)
         "${dollar}supervisord"
         ;;
 graceful)
-        echo "Restarting EDRN processes under existing Supervisor"
+        echo "Restarting DMCC Backend processes under existing Supervisor"
         "${dollar}supervisorctl" restart all
         ;;
 status)
