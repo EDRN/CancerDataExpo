@@ -44,16 +44,17 @@ To deploy this software, do the following:
 
 1. Extract it to a convenient location, say /usr/local/dmcc-backend.
 2. Change the current working directory to that location.
-3. Bootstrap it: ``python2.7 bootstrap.py -d``
-4. Build it: ``bin/buildout -c ops.cfg``
-5. Create the app server instance:
+3. Edit the ops.cfg file and change the usernames + passwords!
+4. Bootstrap it: ``python2.7 bootstrap.py -c``
+5. Build it: ``bin/buildout -c ops.cfg``
+6. Create the app server instance:
    ``bin/buildout -c ops.cfg install dmcc-appserver``
-5. Install the init script:
+7. Install the init script:
    ``install -o root -g root -m 755 bin/dmcc-backend /etc/init.d``
-6. Install the cron job:
+8. Install the cron job:
    ``install -o root -g root -m 755 bin/update-rdf /etc/cron.daily/edrn-update-rdf``
-6. Add to chkconfig: ``chkconfig --add dmcc-backend``
-7. Set ownership: ``chown -R edrn parts var``.
+9. Add to chkconfig: ``chkconfig --add dmcc-backend``
+10. Set ownership: ``chown -R edrn parts var``.
 
 You can then start it all up with::
 
