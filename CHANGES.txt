@@ -1,3 +1,8 @@
+Release Notes - Early Detection of Cancer - Version DMCC Backend Apps 1.0.3
+
+** New Feature
+    * Added Jenkins configuration file for jenkins deployment 
+
 Release Notes - Early Detection of Cancer - Version DMCC Backend Apps 1.0.2 - 2012-11-30
 
 ** Bug
