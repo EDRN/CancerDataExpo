@@ -2,7 +2,7 @@ Release Notes - Early Detection of Cancer - Version DMCC Backend Apps 1.0.3
 
 ** New Feature
     * Added Jenkins configuration file for jenkins deployment 
-    * Added versions to base.cfg for zc.buildout and setuptools to maintain consistency with PublicPortal
+    * Added six 1.6.1 version because six.moves.urllib urllib_request requires this version
 
 Release Notes - Early Detection of Cancer - Version DMCC Backend Apps 1.0.2 - 2012-11-30
 
