@@ -1,10 +1,25 @@
 {
-	"folders":
-        [
-        {
-            "path": ".",
-            "folder_exclude_patterns": ["bin", "dep-src", "develop-eggs", "dist", "build", "*.egg-info", "parts", "var", "python*"],
-            "file_exclude_patterns": [".*.cfg", "bootstrap.py", "doc.txt", "*.sublime-*"]
-        }
-	]
+   "folders" : [
+      {
+         "folder_exclude_patterns" : [
+            "bin",
+            "dep-src",
+            "develop-eggs",
+            "dist",
+            "build",
+            "*.egg-info",
+            "parts",
+            "var",
+            "python*",
+            "src"
+         ],
+         "path" : ".",
+         "file_exclude_patterns" : [
+            ".*.cfg",
+            "bootstrap.py",
+            "doc.txt",
+            "*.sublime-*"
+         ]
+      }
+   ]
 }
