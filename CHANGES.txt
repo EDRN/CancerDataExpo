@@ -1,3 +1,9 @@
+Release Notes - Early Detection of Cancer - Version CancerDataExpo 2.0.2
+
+** Improvement
+    * [CA-919] - Add DMCC App Server to Jenkins
+
+
 Release Notes - Early Detection of Cancer - Version DMCC Backend Apps 2.0.1 - 2016-02-01
 
 ** New Feature
