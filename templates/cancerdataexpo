@@ -1,39 +1,36 @@
 #!/bin/sh
 #
 # Early Detection Research Network (EDRN) Informatics Center (IC)
-# Backend Management for the Data Management & Coordinating Center (DMCC)
+# Cancer Data Expo
 #
-# Starts & stops the DMCC Backend Supervisor, which in turn monitors and
-# controls all of the processes necessary to run the DMCC Backend.
+# Starts & stops the Cancer Data Expo Supervisor, which in turn monitors and
+# controls all of the processes necessary to run the Cancer Data Expo
 #
 # chkconfig: 345 87 12
-# description: DMCC Backend Supervisor
+# description: Cancer Data Expo
 
 home="${buildout:directory}"
 bin="${dollar}{home}/bin"
 supervisord="${dollar}{bin}/supervisord"
 supervisorctl="${dollar}{bin}/supervisorctl"
-python="/usr/local/python"
-LD_LIBRARY_PATH="${dollar}{python}/parts/ops/lib"
-export LD_LIBRARY_PATH
 
 case "${dollar}1" in
 start)
-        echo "Starting DMCC Backend Supervisor"
+        echo "Starting Cancer Data Expo"
         "${dollar}supervisord"
         ;;
 stop)
-        echo "Stopping DMCC Backend Supervisor"
+        echo "Stopping Cancer Data Expo"
         "${dollar}supervisorctl" shutdown
         ;;
 restart)
-        echo "Restarting DMCC Backend Supervisor"
+        echo "Restarting Cancer Data Expo"
         "${dollar}supervisorctl" shutdown
         /bin/sleep 5
         "${dollar}supervisord"
         ;;
 graceful)
-        echo "Restarting DMCC Backend processes under existing Supervisor"
+        echo "Restarting Cancer Data Expo processes under existing Supervisor"
         "${dollar}supervisorctl" restart all
         ;;
 status)
