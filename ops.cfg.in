@@ -19,16 +19,24 @@
 #
 # Please set a better password for the process Supervisor.
 [supervisor]
-username = admin
-password = secret
+username = 
+password = 
 
 # Zope
 # ----
 #
 # Please set a better password for the Zope app server.
 [zope]
-username = secret
-password = admin
+username = 
+password = 
+
+
+# User IDs
+# --------
+#
+# Unix accounts under which to run services.  Supervisor runs as root.
+[users]
+zope = edrn
 
 
 # Buildout
@@ -38,6 +46,9 @@ password = admin
 [buildout]
 extends = etc/base.cfg
 update-versions-file = ${buildout:directory}/var/ops-versions.cfg
+eggs-directory = /usr/local/edrn/buildout/eggs
+download-cache = /usr/local/edrn/buildout/downloads
+extends-cache = /usr/local/edrn/buildout/extends
 parts =
     lxml
     zope
