@@ -1,3 +1,9 @@
+Release Notes - Early Detection of Cancer - Version CancerDataExpo 2.0.3 - OPERATIONS
+
+** New Feature
+    * [CA-1336] - Cancer Data Expo needs upgrade step
+
+
 Release Notes - Early Detection of Cancer - Version CancerDataExpo 2.0.2
 
 ** Improvement
@@ -27,5 +33,3 @@ Release Notes - Early Detection of Cancer - Version DMCC Backend Apps 1.0.1
 
 ** New Feature
     * [CA-915] - Update tunnel hostname for DMCC SQL Server
-
-
