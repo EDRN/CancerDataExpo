@@ -42,7 +42,7 @@ Deployment
 
 To deploy this software, do the following:
 
-1. Extract it to a convenient location, say /usr/local/dmcc-backend.
+1. Extract it to a convenient location, say /usr/local/cancerdataexpo.
 2. Change the current working directory to that location.
 3. Edit the ops.cfg file and change the usernames + passwords!
 4. Bootstrap it: ``python2.7 bootstrap.py -c``
@@ -50,15 +50,16 @@ To deploy this software, do the following:
 6. Create the app server instance:
    ``bin/buildout -c ops.cfg install dmcc-appserver``
 7. Install the init script:
-   ``install -o root -g root -m 755 bin/dmcc-backend /etc/init.d``
+   ``install -o root -g root -m 755 bin/cancerdataexpo /etc/init.d``
 8. Install the cron job:
    ``install -o root -g root -m 755 bin/update-rdf /etc/cron.daily/edrn-update-rdf``
-9. Add to chkconfig: ``chkconfig --add dmcc-backend``
+   ``install -o root -g root -m 755 bin/update-summary /etc/cron.daily/edrn-update-summary``
+9. Add to chkconfig: ``chkconfig --add cancerdataexpo``
 10. Set ownership: ``chown -R edrn parts var``.
 
 You can then start it all up with::
 
-    service dmcc-backend start
+    service cancerdataexpo start
 
 
 .. References:

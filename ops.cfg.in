@@ -59,6 +59,7 @@ parts =
     init-script
     logrotate
     update-rdf
+    update-summary
 
 
 

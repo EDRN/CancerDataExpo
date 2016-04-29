@@ -1,6 +1,9 @@
 Release Notes - Early Detection of Cancer - Version CancerDataExpo 2.0.3 - OPERATIONS
 
 ** Bug
+    * [CA-1339] - CancerDataExpo is not updating nightly summaries
+
+** Bug
     * [CA-1337] - CancerDataExpo is still calling dmcc-backend template
 
 ** New Feature

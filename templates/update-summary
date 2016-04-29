@@ -1,8 +1,8 @@
 #!/bin/sh
 #
-# update-rdf - Update EDRN's various RDF data sources for the Caner Data Expo
+# update-summary - Update EDRN's various RDF data sources for the Caner Data Expo
 #
-# Note that templates/update-rdf generates bin/update-rdf.  Are you editing
+# Note that templates/update-summary generates bin/update-summary.  Are you editing
 # the right file?
 #
 # Copyright 2012–2016 California Institute of Technology. ALL RIGHTS
@@ -19,6 +19,6 @@ exec curl \
     --silent \
     --show-error \
     --user "$credential" \
-    http://${interfaces:zope}:${ports:zope}/cancerdataexpo/@@updateRDF
+    http://${interfaces:zope}:${ports:zope}/cancerdataexpo/@@updateSummary
 
 
