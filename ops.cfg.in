@@ -10,7 +10,7 @@
 # 2. Bootsrap: python2.7 bootstrap.py -c ops.cfg
 # 3. Buildout: bin/buildout -c ops.cfg
 #
-# Copyright 2012–2014 California Institute of Technology. ALL RIGHTS
+# Copyright 2012–2016 California Institute of Technology. ALL RIGHTS
 # RESERVED. U.S. Government Sponsorship acknowledged.
 
 
@@ -60,6 +60,3 @@ parts =
     logrotate
     update-rdf
     update-summary
-
-
-
