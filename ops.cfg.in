@@ -30,6 +30,10 @@ password =
 [zope]
 username = 
 password = 
+# We need to explicitly set this in operations (CA-1411):
+environment-vars =
+    TZ UTC
+    HOME /home/edrn
 
 
 # User IDs
