@@ -1,3 +1,18 @@
+Release Notes - Early Detection of Cancer - Version CancerDataExpo 2.0.5 - 2017-06-12 OPERATIONS
+
+** Bug
+    * [CA-1352] - Duplicate nightly summaries are being generated
+    * [CA-1407] - No summary publication data available
+    * [CA-1412] - Fetch group too large
+
+** New Feature
+    * [CA-1525] - RDF Server needs to provide current employment status on person feed
+    * [CA-1526] - Provide site ID in publications RDF
+
+** Improvement
+    * [CA-1547] - Have EDRN RDF server log unused slots
+
+
 Release Notes - Early Detection of Cancer - Version CancerDataExpo 2.0.4 - 2016-05-12 OPERATIONS
 
 ** Bug
