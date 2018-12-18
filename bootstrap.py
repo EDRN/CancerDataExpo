@@ -85,11 +85,13 @@ try:
 except ImportError:
     from urllib2 import urlopen
 
-ez = {}
-if os.path.exists('ez_setup.py'):
-    exec(open('ez_setup.py').read(), ez)
-else:
-    exec(urlopen('https://bootstrap.pypa.io/ez_setup.py').read(), ez)
+# Ez_setup is deprecated and automatically uses specific setuptools version
+# Will temporarily comment out this setup and manually install setuptools
+#ez = {}
+#if os.path.exists('ez_setup.py'):
+#    exec(open('ez_setup.py').read(), ez)
+#else:
+#    exec(urlopen('https://bootstrap.pypa.io/ez_setup.py').read(), ez)
 
 if not options.allow_site_packages:
     # ez_setup imports site, which adds site packages
@@ -114,7 +116,7 @@ if options.setuptools_version is not None:
 if options.setuptools_to_dir is not None:
     setup_args['to_dir'] = options.setuptools_to_dir
 
-ez['use_setuptools'](**setup_args)
+#ez['use_setuptools'](**setup_args)
 import setuptools
 import pkg_resources
 
