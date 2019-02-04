@@ -1,5 +1,8 @@
 Release Notes - Early Detection of Cancer - Version CancerDataExpo 2.0.5 - 2017-06-12 OPERATIONS
 
+** Improvement
+    * [CA-1613] - Update Labcas science data RDF to use DataSetName
+
 ** Bug
     * [CA-1352] - Duplicate nightly summaries are being generated
     * [CA-1407] - No summary publication data available
