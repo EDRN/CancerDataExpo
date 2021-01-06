@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx">
+      <s:element name="ConfirmStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="verificationNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConfirmStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConfirmStatusResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="pwdVerification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="verificationNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="pwdVerificationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pwdVerificationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="edrnStaffInfoByLogin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="verificationNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="edrnStaffInfoByLoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="edrnStaffInfoByLoginResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Committees">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="verificationNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CommitteesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CommitteesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Committee_Membership">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="verificationNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Committee_MembershipResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Committee_MembershipResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Disease">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="verificationNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DiseaseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DiseaseResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EDRN_Protocol">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="verificationNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EDRN_ProtocolResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EDRN_ProtocolResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Protocol_or_Study">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="verificationNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Protocol_or_StudyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Protocol_or_StudyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Protocol_Protocol_Relationship">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="verificationNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Protocol_Protocol_RelationshipResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Protocol_Protocol_RelationshipResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Protocol_Site_Specifics">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="verificationNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Protocol_Site_SpecificsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Protocol_Site_SpecificsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Protocol_Registered_Person_Specifics">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="verificationNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Protocol_Registered_Person_SpecificsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Protocol_Registered_Person_SpecificsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Publication">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="verificationNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PublicationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PublicationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Registered_Person">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="verificationNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Registered_PersonResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Registered_PersonResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Site">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="verificationNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SiteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SiteResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="tlkpProtocolSiteRoles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="verificationNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="tlkpProtocolSiteRolesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tlkpProtocolSiteRolesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Body_System">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="verificationNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Body_SystemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Body_SystemResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="tlkpReportingStages">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="verificationNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="tlkpReportingStagesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tlkpReportingStagesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ConfirmStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:ConfirmStatus" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:ConfirmStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="pwdVerificationSoapIn">
+    <wsdl:part name="parameters" element="tns:pwdVerification" />
+  </wsdl:message>
+  <wsdl:message name="pwdVerificationSoapOut">
+    <wsdl:part name="parameters" element="tns:pwdVerificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="edrnStaffInfoByLoginSoapIn">
+    <wsdl:part name="parameters" element="tns:edrnStaffInfoByLogin" />
+  </wsdl:message>
+  <wsdl:message name="edrnStaffInfoByLoginSoapOut">
+    <wsdl:part name="parameters" element="tns:edrnStaffInfoByLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="CommitteesSoapIn">
+    <wsdl:part name="parameters" element="tns:Committees" />
+  </wsdl:message>
+  <wsdl:message name="CommitteesSoapOut">
+    <wsdl:part name="parameters" element="tns:CommitteesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Committee_MembershipSoapIn">
+    <wsdl:part name="parameters" element="tns:Committee_Membership" />
+  </wsdl:message>
+  <wsdl:message name="Committee_MembershipSoapOut">
+    <wsdl:part name="parameters" element="tns:Committee_MembershipResponse" />
+  </wsdl:message>
+  <wsdl:message name="DiseaseSoapIn">
+    <wsdl:part name="parameters" element="tns:Disease" />
+  </wsdl:message>
+  <wsdl:message name="DiseaseSoapOut">
+    <wsdl:part name="parameters" element="tns:DiseaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="EDRN_ProtocolSoapIn">
+    <wsdl:part name="parameters" element="tns:EDRN_Protocol" />
+  </wsdl:message>
+  <wsdl:message name="EDRN_ProtocolSoapOut">
+    <wsdl:part name="parameters" element="tns:EDRN_ProtocolResponse" />
+  </wsdl:message>
+  <wsdl:message name="Protocol_or_StudySoapIn">
+    <wsdl:part name="parameters" element="tns:Protocol_or_Study" />
+  </wsdl:message>
+  <wsdl:message name="Protocol_or_StudySoapOut">
+    <wsdl:part name="parameters" element="tns:Protocol_or_StudyResponse" />
+  </wsdl:message>
+  <wsdl:message name="Protocol_Protocol_RelationshipSoapIn">
+    <wsdl:part name="parameters" element="tns:Protocol_Protocol_Relationship" />
+  </wsdl:message>
+  <wsdl:message name="Protocol_Protocol_RelationshipSoapOut">
+    <wsdl:part name="parameters" element="tns:Protocol_Protocol_RelationshipResponse" />
+  </wsdl:message>
+  <wsdl:message name="Protocol_Site_SpecificsSoapIn">
+    <wsdl:part name="parameters" element="tns:Protocol_Site_Specifics" />
+  </wsdl:message>
+  <wsdl:message name="Protocol_Site_SpecificsSoapOut">
+    <wsdl:part name="parameters" element="tns:Protocol_Site_SpecificsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Protocol_Registered_Person_SpecificsSoapIn">
+    <wsdl:part name="parameters" element="tns:Protocol_Registered_Person_Specifics" />
+  </wsdl:message>
+  <wsdl:message name="Protocol_Registered_Person_SpecificsSoapOut">
+    <wsdl:part name="parameters" element="tns:Protocol_Registered_Person_SpecificsResponse" />
+  </wsdl:message>
+  <wsdl:message name="PublicationSoapIn">
+    <wsdl:part name="parameters" element="tns:Publication" />
+  </wsdl:message>
+  <wsdl:message name="PublicationSoapOut">
+    <wsdl:part name="parameters" element="tns:PublicationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Registered_PersonSoapIn">
+    <wsdl:part name="parameters" element="tns:Registered_Person" />
+  </wsdl:message>
+  <wsdl:message name="Registered_PersonSoapOut">
+    <wsdl:part name="parameters" element="tns:Registered_PersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="SiteSoapIn">
+    <wsdl:part name="parameters" element="tns:Site" />
+  </wsdl:message>
+  <wsdl:message name="SiteSoapOut">
+    <wsdl:part name="parameters" element="tns:SiteResponse" />
+  </wsdl:message>
+  <wsdl:message name="tlkpProtocolSiteRolesSoapIn">
+    <wsdl:part name="parameters" element="tns:tlkpProtocolSiteRoles" />
+  </wsdl:message>
+  <wsdl:message name="tlkpProtocolSiteRolesSoapOut">
+    <wsdl:part name="parameters" element="tns:tlkpProtocolSiteRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Body_SystemSoapIn">
+    <wsdl:part name="parameters" element="tns:Body_System" />
+  </wsdl:message>
+  <wsdl:message name="Body_SystemSoapOut">
+    <wsdl:part name="parameters" element="tns:Body_SystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="tlkpReportingStagesSoapIn">
+    <wsdl:part name="parameters" element="tns:tlkpReportingStages" />
+  </wsdl:message>
+  <wsdl:message name="tlkpReportingStagesSoapOut">
+    <wsdl:part name="parameters" element="tns:tlkpReportingStagesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ws_newcompassSoap">
+    <wsdl:operation name="ConfirmStatus">
+      <wsdl:input message="tns:ConfirmStatusSoapIn" />
+      <wsdl:output message="tns:ConfirmStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="pwdVerification">
+      <wsdl:input message="tns:pwdVerificationSoapIn" />
+      <wsdl:output message="tns:pwdVerificationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="edrnStaffInfoByLogin">
+      <wsdl:input message="tns:edrnStaffInfoByLoginSoapIn" />
+      <wsdl:output message="tns:edrnStaffInfoByLoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Committees">
+      <wsdl:input message="tns:CommitteesSoapIn" />
+      <wsdl:output message="tns:CommitteesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Committee_Membership">
+      <wsdl:input message="tns:Committee_MembershipSoapIn" />
+      <wsdl:output message="tns:Committee_MembershipSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Disease">
+      <wsdl:input message="tns:DiseaseSoapIn" />
+      <wsdl:output message="tns:DiseaseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EDRN_Protocol">
+      <wsdl:input message="tns:EDRN_ProtocolSoapIn" />
+      <wsdl:output message="tns:EDRN_ProtocolSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Protocol_or_Study">
+      <wsdl:input message="tns:Protocol_or_StudySoapIn" />
+      <wsdl:output message="tns:Protocol_or_StudySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Protocol_Protocol_Relationship">
+      <wsdl:input message="tns:Protocol_Protocol_RelationshipSoapIn" />
+      <wsdl:output message="tns:Protocol_Protocol_RelationshipSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Protocol_Site_Specifics">
+      <wsdl:input message="tns:Protocol_Site_SpecificsSoapIn" />
+      <wsdl:output message="tns:Protocol_Site_SpecificsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Protocol_Registered_Person_Specifics">
+      <wsdl:input message="tns:Protocol_Registered_Person_SpecificsSoapIn" />
+      <wsdl:output message="tns:Protocol_Registered_Person_SpecificsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Publication">
+      <wsdl:input message="tns:PublicationSoapIn" />
+      <wsdl:output message="tns:PublicationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Registered_Person">
+      <wsdl:input message="tns:Registered_PersonSoapIn" />
+      <wsdl:output message="tns:Registered_PersonSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Site">
+      <wsdl:input message="tns:SiteSoapIn" />
+      <wsdl:output message="tns:SiteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="tlkpProtocolSiteRoles">
+      <wsdl:input message="tns:tlkpProtocolSiteRolesSoapIn" />
+      <wsdl:output message="tns:tlkpProtocolSiteRolesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Body_System">
+      <wsdl:input message="tns:Body_SystemSoapIn" />
+      <wsdl:output message="tns:Body_SystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="tlkpReportingStages">
+      <wsdl:input message="tns:tlkpReportingStagesSoapIn" />
+      <wsdl:output message="tns:tlkpReportingStagesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ws_newcompassSoap" type="tns:ws_newcompassSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConfirmStatus">
+      <soap:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/ConfirmStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pwdVerification">
+      <soap:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/pwdVerification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="edrnStaffInfoByLogin">
+      <soap:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/edrnStaffInfoByLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Committees">
+      <soap:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/Committees" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Committee_Membership">
+      <soap:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/Committee_Membership" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Disease">
+      <soap:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/Disease" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EDRN_Protocol">
+      <soap:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/EDRN_Protocol" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Protocol_or_Study">
+      <soap:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/Protocol_or_Study" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Protocol_Protocol_Relationship">
+      <soap:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/Protocol_Protocol_Relationship" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Protocol_Site_Specifics">
+      <soap:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/Protocol_Site_Specifics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Protocol_Registered_Person_Specifics">
+      <soap:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/Protocol_Registered_Person_Specifics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Publication">
+      <soap:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/Publication" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Registered_Person">
+      <soap:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/Registered_Person" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Site">
+      <soap:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/Site" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="tlkpProtocolSiteRoles">
+      <soap:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/tlkpProtocolSiteRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Body_System">
+      <soap:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/Body_System" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="tlkpReportingStages">
+      <soap:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/tlkpReportingStages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ws_newcompassSoap12" type="tns:ws_newcompassSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConfirmStatus">
+      <soap12:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/ConfirmStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pwdVerification">
+      <soap12:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/pwdVerification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="edrnStaffInfoByLogin">
+      <soap12:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/edrnStaffInfoByLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Committees">
+      <soap12:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/Committees" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Committee_Membership">
+      <soap12:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/Committee_Membership" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Disease">
+      <soap12:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/Disease" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EDRN_Protocol">
+      <soap12:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/EDRN_Protocol" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Protocol_or_Study">
+      <soap12:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/Protocol_or_Study" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Protocol_Protocol_Relationship">
+      <soap12:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/Protocol_Protocol_Relationship" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Protocol_Site_Specifics">
+      <soap12:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/Protocol_Site_Specifics" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Protocol_Registered_Person_Specifics">
+      <soap12:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/Protocol_Registered_Person_Specifics" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Publication">
+      <soap12:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/Publication" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Registered_Person">
+      <soap12:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/Registered_Person" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Site">
+      <soap12:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/Site" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="tlkpProtocolSiteRoles">
+      <soap12:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/tlkpProtocolSiteRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Body_System">
+      <soap12:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/Body_System" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="tlkpReportingStages">
+      <soap12:operation soapAction="http://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx/tlkpReportingStages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ws_newcompass">
+    <wsdl:port name="ws_newcompassSoap" binding="tns:ws_newcompassSoap">
+      <soap:address location="testscheme://localhost/ws_newcompass.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ws_newcompassSoap12" binding="tns:ws_newcompassSoap12">
+      <soap12:address location="testscheme://localhost/ws_newcompass.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

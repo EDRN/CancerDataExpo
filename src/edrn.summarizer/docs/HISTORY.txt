@@ -1,0 +1,65 @@
+Changelog
+=========
+
+What follows is a log of changes from release to release.  Where issue
+identifiers appear, you can find more about them by visiting this project's
+issue tracker at https://oodt.jpl.nasa.gov/jira/browse/CA.
+
+0.0.8 - Get all sources
+-----------------------
+
+* CA-1571 - CancerDataExpo idsearch does not capture multiple pdb ids
+
+
+0.0.7 - You are now mutated
+---------------------------
+
+* CA-1434
+* CA-1476
+
+
+0.0.6 - Ignore, bad version
+---------------------------
+
+
+0.0.5 — New content type
+------------------------
+
+* CA-1412 - Fetch group too large
+* CA-1421 - Added dataset to organ summary statistics
+
+0.0.4 - ID Webservice
+---------------------
+
+* CA-1352
+* CA-1353
+
+
+0.0.3 - Tests fixed, naming corrected
+-------------------------------------
+
+* CA-1340, edrn.summarizer tests fail
+
+0.0.2 - JSON Sumarization added
+-------------------------------
+
+* Updated edrn.summarizer with json
+* CA-1329, Create a set of summarization services that summarizes and serves json data for visualizations as well as external data sources
+
+0.0.1 - Released
+----------------
+
+* First release
+* Generates summarized data from dmcc
+* CA-1340, edrn.summarizer tests fail
+
+0.0.0 - Unreleased
+------------------
+
+* unreleased version
+* Generates summarized data from dmcc
+
+
+.. References:
+.. _EDRN: http://edrn.nci.nih.gov/
+.. _Summarizer: http://w3.org/Summarizer/

@@ -1,0 +1,105 @@
+DMCC Protocol RDF Generator
+===========================
+
+The various SOAP web services that the DMCC provides to describe EDRN's
+protocols are some of the most complicated of all of their 
+offerings.  Aside from using the same, strange,
+quasi-XML-but-otherwise-non-standard-from-anything-in-the-world text format,
+they also encode values-with-values, using a technique they call "slots".
+
+
+This file serves as a reference for the four SOAP operations the DMCC
+provides, and enumerates the slots and other fields to expect.
+
+
+Protocol_or_Study
+-----------------
+
+Keys:
+
+- Identifier
+- slot
+- value
+
+Slots:
+
+- Eligibility_criteria
+- Protocol_Abstract
+- Title
+
+
+EDRN_Protocol
+-------------
+
+Keys:
+
+- Identifier
+- slot
+- value
+
+Slots:
+
+- BiomarkerName
+- Coordinating_Investigator_Site_ID
+- Eligibility_criteria
+- Involved_Investigator_Site_ID
+- Lead_Investigator_Site_ID
+- Protocol_5_Phase_Status
+- Protocol_Aims
+- Protocol_Analytic_Method
+- Protocol_Blinding
+- Protocol_Cancer_Type
+- Protocol_Collaborative_Group
+- Protocol_Comments
+- Protocol_Data_Sharing_Plan
+- Protocol_Data_Sharing_Plan_In_Place
+- Protocol_Date_Finish
+- Protocol_Date_Finish_Estimate
+- Protocol_Date_Start
+- Protocol_Design
+- Protocol_Field_of_Research
+- Protocol_Name_Abbrev
+- Protocol_Objective
+- Protocol_or_Project_Flag
+- Protocol_Publications
+- Protocol_Results_Outcome
+- Protocol_Results_Outcome_Secure_Site
+- Protocol_Type
+- Sample_Size_Final
+- Sample_Size_Planned
+
+Protocol_Site_Specifics
+-----------------------
+
+Keys:
+
+- Animal_Subject_Training_Received
+- Human_Subject_Training_Recieved
+- Identifier
+- IRB_Approval_Needed
+- IRB_Date_Current_Approval_Date
+- IRB_Date_Original_Approval_Date
+- IRB_Expiration_Date
+- IRB_General_Notes
+- IRB_Number
+- Protocol_ID
+- Protocol_Site_Roles
+- Reporting_Stages
+- Site_ID
+
+No slots.
+
+
+Protocol_Protocol_Relationship
+------------------------------
+
+Keys:
+
+Identifier
+Protocol_1_Identifier
+Protocol_2_Identifier
+Protocol_relationship_comment
+Protocol_relationship_type
+Title
+
+No slots.

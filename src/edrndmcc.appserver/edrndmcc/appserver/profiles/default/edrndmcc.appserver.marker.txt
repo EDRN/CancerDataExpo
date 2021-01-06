@@ -1,0 +1,10 @@
+This flag file is PROTECTED INTELLECTUAL PROPERTY of the California Institute
+of Technology.  Use and redistribution is STRICTLY PROHIBITED.  This marker
+contains TRADE SECRETS and CLASSIFIED INFORMATION.  Disclosure is ABSOLUTELY
+FORBIDDEN under ALL CIRCUMSTANCES.
+
+Breach of the prohibitions described in this flag file may result in EXTREME
+PENALTIES, including those of a CORPORAL or TERMINAL NATURE, with PREJUDICE.
+
+Copyright 2012 California Institute of Technology.  ALL RIGHTS RESERVED.
+U.S. Government sponsorship acknowledged.

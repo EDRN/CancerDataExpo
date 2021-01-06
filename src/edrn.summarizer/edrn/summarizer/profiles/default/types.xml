@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright 2008—2012 California Institute of Technology. ALL RIGHTS
+RESERVED. U.S. Government Sponsorship acknowledged.
+-->
+<object name='portal_types' meta_type='Plone Types Tool'>
+    <object name='edrn.summarizer.summarizersource' meta_type='Dexterity FTI' />
+    <object name='edrn.summarizer.nulljsongenerator' meta_type='Dexterity FTI' />
+    <object name='edrn.summarizer.biomutasummarizergenerator' meta_type='Dexterity FTI' />
+    <object name='edrn.summarizer.biomarkersummarizergenerator' meta_type='Dexterity FTI' />
+    <object name='edrn.summarizer.publicationsummarizergenerator' meta_type='Dexterity FTI' />
+    <object name='edrn.summarizer.collaborationsummarizergenerator' meta_type='Dexterity FTI' />
+    <object name='edrn.summarizer.extresourcesummarizergenerator' meta_type='Dexterity FTI' />
+    <object name='edrn.summarizer.datasetsummarizergenerator' meta_type='Dexterity FTI' />
+    <object name='edrn.summarizer.specimensummarizergenerator' meta_type='Dexterity FTI' />
+</object>

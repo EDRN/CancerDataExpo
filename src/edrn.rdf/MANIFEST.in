@@ -1,0 +1,3 @@
+recursive-include edrn *.zcml *.pt *.txt *.xml *.tsv
+recursive-include docs *.txt
+include NOTICE.txt *.rst

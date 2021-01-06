@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright 2008–2020 California Institute of Technology. ALL RIGHTS
+RESERVED. U.S. Government Sponsorship acknowledged.
+-->
+<metadata>
+	<version>1000</version>
+    <description>EDRN DMCC Application Server &amp; Cancer Data Expo policy</description>
+    <dependencies>
+        <dependency>profile-edrn.rdf:default</dependency>
+        <dependency>profile-edrn.summarizer:default</dependency>
+        <dependency>profile-plone.app.caching:default</dependency>
+        <dependency>profile-plone.app.caching:without-caching-proxy</dependency>
+    </dependencies>
+</metadata>

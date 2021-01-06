@@ -1,0 +1,294 @@
+Changelog
+=========
+
+What follows is a log of changes from release to release.  Where issue
+identifiers appear, you can find more about them by visiting this project's
+issue tracker at https://oodt.jpl.nasa.gov/jira/browse/CA.
+
+
+1.3.7 — LabCAS
+--------------
+
+• This release provides an RDF format of LabCAS data from Solr
+• CA-1613: Update Labcas science data RDF to use DataSetName
+
+1.3.6 — Involved Logs
+---------------------
+
+• CA-1492 - Involved investigator sites not appearing on protocols
+• Fixed biomuta default data source to point to new location.
+• CA-1525: RDF Server needs to provide current employment status on person feed
+• CA-1526: Provide site ID in publications RDF
+• CA-1547: Have EDRN RDF server log unused slots
+
+
+1.3.5 — Upgrades
+----------------
+
+• Added an upgrade step to enable Biomuta RDF ingestion.
+
+
+1.3.4 — Biomuta
+---------------
+
+• Added Biomuta RDF ingestion system and source.
+
+
+1.3.3 — Predicates and Packaging
+--------------------------------
+
+• Fix predicate URIs for EDRN title and account name.
+• Obey PyPI's new restrictions on package hosting, PEP-470.
+• Added Biomuta RDF generator and source.
+• Upgrade for Travis-CI container & caching mechanisms.
+
+
+1.3.2 — Ontology 1.8
+--------------------
+
+This release sets up additional predicate handlers and is compatible with the
+SOAP Ontology API 1.8.
+
+
+1.3.1 — I Had Some Chicken; Pass the FLOSS
+------------------------------------------
+
+This package is now free, open source software under the Apache License v2.
+
+
+1.3.0 — Texas-Sized
+-------------------
+
+• Compatible with RDFLib 4.0.1
+• Compatible with Plone 4.3.2
+• Compatible with zc.buildout 2.2.1
+• Compatible with EDRN Ontology 1.8
+• Compatible with DMCC Web Services (test tier) as of 20140401
+
+
+1.2.3 — Protocols Without Publications
+--------------------------------------
+
+The DMCC's SOAP service always lists a slot for publications even when a
+protocol has no publications.  But in RDF, we don't want make any statement
+about publications when there aren't any.  This release addresses that.
+
+
+1.2.2 — Upgrades
+----------------
+
+This release addresses the following:
+
+* Compatible with RDFLib 3.2.3
+* Compatible with Plone 4.2.2
+
+
+1.2.1 — Links
+-------------
+
+This release addresses the following:
+
+* CA-1031 - New RDF server fails to link protocols correctly
+
+
+1.2.0 — Webbed
+--------------
+
+This release drops the SQL Server access and uses the DMCC's SOAP services
+instead.
+
+
+1.1.3 — Ahoy Skipper
+--------------------
+
+This release updates the tunnel to contact the DMCC's SQL Server database on
+its new home, skipper.fhcrc.org.
+
+* CA-957 - DMCC SQL Server for dbEKE password is no longer valid
+
+
+1.1.2 — Release Early, Release Often
+------------------------------------
+
+This release fixes the default password for the EKE database.  (We should
+really just make this a parameter on a control panel, except we're supposed to
+switch over to the ws_newcompass webservice anyway.)
+
+
+1.1.1 — Default Database Deliberation
+-------------------------------------
+
+This release uses the database on ``localhost`` by default, since that's the
+point of combining the RDF server with the tunneled backend deployment.
+
+
+1.1.0 — Upgrade Containerize
+----------------------------
+
+This release makes edrn.rdf compatible with:
+
+* Zope 2.13
+* Plone 4.1
+* plone.testing 4.0.2
+
+It also prepares the RDF server for decommissioning on ginger.fhcrc.org and
+relocating at the EDRN Informatics Center.
+
+
+1.0.0 - Committees
+------------------
+
+The following are addressed in this release:
+
+* Physical, mailing, and shipping addresses are no longer provided for each
+  EDRN site.  The DMCC removed all of them from the EKE database.  However,
+  they did add a single address to registered people.  As a result, this
+  release drops addresses from sites and adds them to people.
+* Committees.  RDF feeds for the list of committees, their types, and their
+  members are now available.
+
+
+0.0.11 - Author! Author!
+------------------------
+
+The RDF feed for EDRN publications has had absolutely no author information in
+it.  And yet no one noticed until today!  So, this release fixes that issue.
+
+By the way, if you're curious, you can see details about the issue at the
+following location: https://oodt.jpl.nasa.gov/jira/browse/CA-582
+
+
+0.0.10 - PyMSSQL Lockdown
+-------------------------
+
+This package depends on the Python Microsoft SQL Server library known as
+"pymssql", but never specified a version of the library to use.  The latest
+version available was just fine for quite some time.
+
+Until today.
+
+Today, pymssql 1.9.905.1 was suddenly available, and it doesn't build.  So,
+we're locking ourselves down to pymssql version 1.0.2, which does build and
+works just fine for what we need.
+
+
+0.0.9 - Account Names
+---------------------
+
+The DMCC now provides user account names for registered people.  This release
+supports that by providing a place to specify the URI to the RDF predicate,
+and the RDF export uses that URI to state the account names of people who have
+accounts.
+
+
+0.0.8 - Official EKE Database
+-----------------------------
+
+This release updates the database server changing it from pongo to compass1.
+The new server, compass1, hosts the official RDF source information and
+contains no funky testing data like "Greg's Cool Protocol".
+
+
+0.0.7 - Protocol Types and Eligibility Criteria
+-----------------------------------------------
+
+Greg Warnick has added additional data to the DMCC RDF database, comprising
+the two following new slots:
+
+* ``Elibility_critera`` describing eligibility criteria of a protocol
+* ``Protocol_type``, what we thought was once long lost, is back!
+
+This release of the RDF_ Server provides these two additional fields.
+Additionally, it updates its test data and function test battery.
+
+
+0.0.6 - Investigators and Staff Strike Back
+-------------------------------------------
+
+The "Site" view within the DMCC RDF database has gotten tons of action
+recently.  It's changed as follows:
+
+* ``Site_Specialty_Description`` is now called ``Site_Program_Description``
+* New field: ``IDs_for_Investigators``
+* New field: ``IDs_for_CoInvestigators``
+* New field: ``IDs_for_CoPrincipalInvestigator``
+
+In addition, the ``Registered_Person`` view gained four new fields:
+
+* ``Fax``
+* ``Specialty``
+* ``Photo``
+* ``EDRN_Title``
+
+Therefore, this release of the EDRN_ RDF_ Server accommodates these updates.
+In addition, it also updates its battery of tests and test data.
+
+
+0.0.5 - Investigators and Staff
+-------------------------------
+
+The "Site" view within the DMCC RDF database now provides primary
+investigators, co-investigators, and other staff members at each site.  This
+release updates the Site RDF_ generation to include such details.
+
+
+0.0.4 - Database Correction
+---------------------------
+
+Release 0.0.3 got away with a test database setting still set.  This release
+corrects that and uses the correct source of RDF data.
+
+
+0.0.3 - Registered People
+-------------------------
+
+This release of EDRN_ RDF_ Server provides a new data source: registered
+people.  Registered people are people known to EDRN.  This data source
+provides RDF descriptions of EDRN people.  In addition, it also fixes the
+following issues:
+
+* CA-296: Site-Specific URI Prefix missing on Protocol control panel.  Added
+  it in r4905.
+* CA-285: Numeric fields of research replaced with actual names; r4906.
+* CA-264: Export registered people; r4907.
+
+In addition, we've reduced the amount of test data and made the unit tests run
+a lot faster.
+
+
+0.0.2 - New DB Structure
+------------------------
+
+This release of the EDRN_  RDF_  Server accommodates the new DMCC database
+structure, particularly for diseases and protocols.  Specifically, it
+addresses these issues:
+
+* CA-252: http://ginger.fhcrc.org/dmcc/rdf-data/diseases/rdf produces error
+* CA-253: http://ginger.fhcrc.org/dmcc/rdf-data/protocols/rdf produces error
+
+In addition, it updates the functional tests' test database.
+
+0.0.1 - Protocols
+-----------------
+
+This release of the EDRN_  RDF_  Server includes implementation of RDF service
+for EDRN Protocols and Studies as tracked by the Data Management and
+Coordinating Center (DMCC).
+
+In addition, this release contains:
+
+* Fixes to the layout of control panel pages for Body Systems, Diseases,
+  Publications, and Site RDF sources.
+* Addition of a download URL to the PyPI package data.
+* Updates to the functional tests' test database.
+
+
+0.0.0 - Unreleased
+------------------
+
+* Initial release
+
+
+.. References:
+.. _EDRN: http://edrn.nci.nih.gov/
+.. _RDF: http://w3.org/RDF/

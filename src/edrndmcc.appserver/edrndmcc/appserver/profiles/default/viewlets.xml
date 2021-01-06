@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object purge="False">
+    <hidden manager="plone.abovecontent" skinname="Plone Default">
+        <viewlet name="plone.path_bar"/>
+    </hidden>
+    <hidden manager="plone.portalheader" skinname="Plone Default">
+        <viewlet name="plone.searchbox"/>
+        <viewlet name="plone.anontools"/>
+    </hidden>
+</object>

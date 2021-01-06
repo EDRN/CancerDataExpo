@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright 2008—2012 California Institute of Technology. ALL RIGHTS
+RESERVED. U.S. Government Sponsorship acknowledged.
+-->
+<configure
+    xmlns='http://namespaces.zope.org/zope'
+    xmlns:browser='http://namespaces.zope.org/browser'
+    xmlns:zcml='http://namespaces.zope.org/zcml'
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:genericsetup='http://namespaces.zope.org/genericsetup'
+    i18n_domain='edrn.summarizer'>
+
+    <include package='plone.rest'/>
+
+    <browser:resourceDirectory
+        name='edrn.summarizer'
+        directory='static'
+    />
+    <genericsetup:registerProfile
+        name='default'
+        title='EDRN Summarizer Service'
+        directory='profiles/default'
+        description='Summarizing descriptions of EDRN resources'
+        provides='Products.GenericSetup.interfaces.EXTENSION'
+    />
+    <genericsetup:importStep
+        name='edrn.summarizer'
+        title='EDRN Summarizer import handlers'
+        description='Creates initial set of summarizing sources and generators'
+        handler='edrn.summarizer.setuphandlers.setupVarious'>
+        <depends name='content' />
+    </genericsetup:importStep>
+    <include
+        zcml:condition='installed Products.GenericSetup.upgrade'
+        file='upgrades.zcml'
+    />
+
+    <plone:service
+        method="GET"
+        accept="application/json"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        factory=".idsearch.IDSearch"
+        name="idsearch"
+        permission="zope2.View" 
+      />
+
+    <browser:page
+        class='.sitesummarizerupdater.SiteSummarizerUpdater'
+        for='plone.app.layout.navigation.interfaces.INavigationRoot'
+        name='updateSummary'
+        permission='cmf.ManagePortal'
+        template='sitesummarizerupdater_templates/sitesummarizerupdater.pt'
+    />
+
+    <browser:page
+        class='.summarizersource.View'
+        for='.summarizersource.ISummarizerSource'
+        name='summary'
+        permission='zope2.View'
+
+    />
+
+    <adapter
+        factory='.biomarkersummarizergenerator.BiomarkerJsonGenerator'
+        provides='.interfaces.IJsonGenerator'
+        for='.biomarkersummarizergenerator.IBiomarkerSummarizerGenerator'
+    />
+    <adapter
+        factory='.biomutasummarizergenerator.BiomutaJsonGenerator'
+        provides='.interfaces.IGraphGenerator'
+        for='.biomutasummarizergenerator.IBiomutaSummarizerGenerator'
+    />
+    <adapter
+        factory='.collaborationsummarizergenerator.CollaborationJsonGenerator'
+        provides='.interfaces.IJsonGenerator'
+        for='.collaborationsummarizergenerator.ICollaborationSummarizerGenerator'
+    />
+    <adapter
+        factory='.datasetsummarizergenerator.DatasetJsonGenerator'
+        provides='.interfaces.IJsonGenerator'
+        for='.datasetsummarizergenerator.IDatasetSummarizerGenerator'
+    />
+    <adapter
+        factory='.extresourcesummarizergenerator.ExtResourceJsonGenerator'
+        provides='.interfaces.IJsonGenerator'
+        for='.extresourcesummarizergenerator.IExtResourceSummarizerGenerator'
+    />
+    <adapter
+        factory='.nulljsongenerator.NullGraphGenerator'
+        provides='.interfaces.IJsonGenerator'
+        for='.nulljsongenerator.INullJsonGenerator'
+    />
+    <adapter
+        factory='.publicationsummarizergenerator.PublicationJsonGenerator'
+        provides='.interfaces.IJsonGenerator'
+        for='.publicationsummarizergenerator.IPublicationSummarizerGenerator'
+    />
+    <adapter
+        factory='.specimensummarizergenerator.SpecimenJsonGenerator'
+        provides='.interfaces.IJsonGenerator'
+        for='.specimensummarizergenerator.ISpecimenSummarizerGenerator'
+    />
+    <adapter
+        factory='.summarizerupdater.SummarizerUpdater'
+        provides='.interfaces.ISummarizerUpdater'
+        for='.summarizersource.ISummarizerSource'
+    />
+
+
+
+</configure>
+<!--
+What was I thinking here?
+toolset
+rolemap
+-->

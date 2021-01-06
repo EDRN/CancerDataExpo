@@ -1,0 +1,388 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<registry xmlns:i18n='http://xml.zope.org/namespaces/i18n' purge='False'>
+  <record name="plone.smtp_host" interface="Products.CMFPlone.interfaces.controlpanel.IMailSchema" field="smtp_host">
+    <field type="plone.registry.field.TextLine">
+      <default>localhost</default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="help_smtp_server">The address of your local SMTP (outgoing e-mail) server. Usually 'localhost', unless you use an external server to send e-mail.</description>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="label_smtp_server">SMTP server</title>
+    </field>
+    <value>smtp.jpl.nasa.gov</value>
+  </record>
+  <record name="plone.email_from_name" interface="Products.CMFPlone.interfaces.controlpanel.IMailSchema" field="email_from_name">
+    <field type="plone.registry.field.TextLine">
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Plone generates e-mail using this name as the e-mail sender.</description>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Site 'From' name</title>
+    </field>
+    <value>Cancer Data Expo</value>
+  </record>
+  <record name="plone.email_from_address" interface="Products.CMFPlone.interfaces.controlpanel.IMailSchema" field="email_from_address">
+    <field type="plone.registry.field.ASCIILine">
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Plone generates e-mail using this address as the e-mail return address. It is also used as the destination address for the site-wide contact form and the 'Send test e-mail' feature.</description>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Site 'From' address</title>
+    </field>
+    <value>sean.kelly@jpl.nasa.gov</value>
+  </record>
+  <record name="plone.nonfolderish_tabs" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="nonfolderish_tabs">
+    <field type="plone.registry.field.Bool">
+      <default>True</default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">By default, any content item in the root of the portal will appear as a tab. If you turn this option off, only folders will be shown. This only has an effect if 'automatically generate tabs' is enabled.</description>
+      <required>False</required>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Generate tabs for items other than folders.</title>
+    </field>
+    <value>False</value>
+  </record>
+  <record name="plone.workflow_states_to_show" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="workflow_states_to_show">
+    <field type="plone.registry.field.Tuple">
+      <default/>
+      <missing_value/>
+      <required>False</required>
+      <value_type type="plone.registry.field.Choice">
+        <vocabulary>plone.app.vocabularies.WorkflowStates</vocabulary>
+      </value_type>
+    </field>
+    <value>
+      <element>published</element>
+    </value>
+  </record>
+  <record name="plone.site_title" interface="Products.CMFPlone.interfaces.controlpanel.ISiteSchema" field="site_title">
+    <field type="plone.registry.field.TextLine">
+      <default>Plone site</default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">This shows up in the title bar of browsers and in syndication feeds.</description>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Site title</title>
+    </field>
+    <value>Cancer Data Expo</value>
+  </record>
+  <record name="plone.site_logo" interface="Products.CMFPlone.interfaces.controlpanel.ISiteSchema" field="site_logo">
+    <field type="plone.registry.field.Bytes">
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">This shows a custom logo on your site.</description>
+      <required>False</required>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Site Logo</title>
+    </field>
+    <value>filenameb64:bG9nby5wbmc=;datab64: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</value>
+  </record>
+  <record name="plone.robots_txt" interface="Products.CMFPlone.interfaces.controlpanel.ISiteSchema" field="robots_txt">
+    <field type="plone.registry.field.SourceText">
+      <default>Sitemap: {portal_url}/sitemap.xml.gz
+
+# Define access-restrictions for robots/spiders
+# http://www.robotstxt.org/wc/norobots.html
+
+
+
+# By default we allow robots to access all areas of our site
+# already accessible to anonymous users
+
+User-agent: *
+Disallow:
+
+
+
+# Add Googlebot-specific syntax extension to exclude forms
+# that are repeated for each piece of content in the site
+# the wildcard is only supported by Googlebot
+# http://www.google.com/support/webmasters/bin/answer.py?answer=40367&amp;ctx=sibling
+
+User-Agent: Googlebot
+Disallow: /*?
+Disallow: /*atct_album_view$
+Disallow: /*folder_factories$
+Disallow: /*folder_summary_view$
+Disallow: /*login_form$
+Disallow: /*mail_password_form$
+Disallow: /@@search
+Disallow: /*search_rss$
+Disallow: /*sendto_form$
+Disallow: /*summary_view$
+Disallow: /*thumbnail_view$
+Disallow: /*view$
+</default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="help_robots_txt">robots.txt is read by search engines to determine how to index your site. For details see &lt;a href='http://www.robotstxt.org'&gt;http://www.robotstxt.org&lt;/a&gt;. Use '{portal_url}' for the site URL.</description>
+      <required>False</required>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">robots.txt</title>
+    </field>
+    <value>Disallow: /</value>
+  </record>
+  <record name="plone.app.caching.interfaces.IPloneCacheSettings.cacheStopRequestVariables" interface="plone.app.caching.interfaces.IPloneCacheSettings" field="cacheStopRequestVariables">
+    <field type="plone.registry.field.Tuple">
+      <default>
+        <element>statusmessages</element>
+        <element>SearchableText</element>
+      </default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone.app.caching" ns0:translate="">Variables in the request that prevent caching if present</description>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone.app.caching" ns0:translate="">Request variables that prevent caching</title>
+      <value_type type="plone.registry.field.ASCIILine">
+        <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone.app.caching" ns0:translate="">Request variables</title>
+      </value_type>
+    </field>
+    <value>
+      <element>statusmessages</element>
+      <element>SearchableText</element>
+    </value>
+  </record>
+  <record name="plone.app.caching.interfaces.IPloneCacheSettings.contentTypeRulesetMapping" interface="plone.app.caching.interfaces.IPloneCacheSettings" field="contentTypeRulesetMapping">
+    <field type="plone.registry.field.Dict">
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone.app.caching" ns0:translate="">Maps content type names to ruleset names</description>
+      <key_type type="plone.registry.field.ASCIILine">
+        <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone.app.caching" ns0:translate="">Content type name</title>
+      </key_type>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone.app.caching" ns0:translate="">Content type/ruleset mapping</title>
+      <value_type type="plone.registry.field.DottedName">
+        <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone.app.caching" ns0:translate="">Ruleset name</title>
+      </value_type>
+    </field>
+    <value/>
+  </record>
+  <record name="plone.app.caching.interfaces.IPloneCacheSettings.purgedContentTypes" interface="plone.app.caching.interfaces.IPloneCacheSettings" field="purgedContentTypes">
+    <field type="plone.registry.field.Tuple">
+      <default>
+        <element>File</element>
+        <element>Image</element>
+        <element>News Item</element>
+      </default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone.app.caching" ns0:translate="">List content types which should be purged when modified</description>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone.app.caching" ns0:translate="">Content types to purge</title>
+      <value_type type="plone.registry.field.ASCIILine">
+        <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone.app.caching" ns0:translate="">Content type name</title>
+      </value_type>
+    </field>
+    <value>
+      <element>File</element>
+      <element>Image</element>
+      <element>News Item</element>
+    </value>
+  </record>
+  <record name="plone.app.caching.interfaces.IPloneCacheSettings.templateRulesetMapping" interface="plone.app.caching.interfaces.IPloneCacheSettings" field="templateRulesetMapping">
+    <field type="plone.registry.field.Dict">
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone.app.caching" ns0:translate="">Maps skin layer page template names to ruleset names</description>
+      <key_type type="plone.registry.field.ASCIILine">
+        <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone.app.caching" ns0:translate="">Page template name</title>
+      </key_type>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone.app.caching" ns0:translate="">Page template/ruleset mapping</title>
+      <value_type type="plone.registry.field.DottedName">
+        <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone.app.caching" ns0:translate="">Ruleset name</title>
+      </value_type>
+    </field>
+    <value>
+      <element key="RSS">plone.content.feed</element>
+      <element key="accessibility-info">plone.content.itemView</element>
+      <element key="atom.xml">plone.content.feed</element>
+      <element key="file_view">plone.content.itemView</element>
+      <element key="image_view">plone.content.itemView</element>
+      <element key="image_view_fullscreen">plone.content.itemView</element>
+      <element key="itunes.xml">plone.content.feed</element>
+      <element key="rss.xml">plone.content.feed</element>
+      <element key="search_rss">plone.content.feed</element>
+      <element key="sitemap">plone.content.itemView</element>
+    </value>
+  </record>
+  <record name="plone.app.caching.moderateCaching.anonOnly">
+    <field type="plone.registry.field.Bool">
+      <description>Ensure logging users always get a fresh page. Note that if you are caching pages in a proxy cache, you'll still need to use a Vary response header to keep anonymous and authenticated content separate.</description>
+      <required>False</required>
+      <title>Only cache for anonymous users</title>
+    </field>
+    <value>False</value>
+  </record>
+  <record name="plone.app.caching.moderateCaching.etags">
+    <field type="plone.registry.field.Tuple">
+      <description>A list of ETag component names to include</description>
+      <required>False</required>
+      <title>ETags</title>
+      <value_type type="plone.registry.field.ASCIILine"/>
+    </field>
+    <value/>
+  </record>
+  <record name="plone.app.caching.moderateCaching.lastModified">
+    <field type="plone.registry.field.Bool">
+      <description>Turn on Last-Modified headers</description>
+      <required>False</required>
+      <title>Last-modified validation</title>
+    </field>
+    <value>False</value>
+  </record>
+  <record name="plone.app.caching.moderateCaching.ramCache">
+    <field type="plone.registry.field.Bool">
+      <description>Turn on caching in Zope memory</description>
+      <required>False</required>
+      <title>RAM cache</title>
+    </field>
+    <value>False</value>
+  </record>
+  <record name="plone.app.caching.moderateCaching.smaxage">
+    <field type="plone.registry.field.Int">
+      <description>Time (in seconds) to cache the response in the caching proxy</description>
+      <required>False</required>
+      <title>Shared maximum age</title>
+    </field>
+    <value>86400</value>
+  </record>
+  <record name="plone.app.caching.moderateCaching.vary">
+    <field type="plone.registry.field.ASCIILine">
+      <description>Name(s) of HTTP headers that must match for the caching proxy to return a cached response</description>
+      <required>False</required>
+      <title>Vary</title>
+    </field>
+    <value/>
+  </record>
+  <record name="plone.app.caching.strongCaching.anonOnly">
+    <field type="plone.registry.field.Bool">
+      <description>Ensure logging users always get a fresh page. Note that if you are caching pages in a proxy cache, you'll still need to use a Vary response header to keep anonymous and authenticated content separate.</description>
+      <required>False</required>
+      <title>Only cache for anonymous users</title>
+    </field>
+    <value>False</value>
+  </record>
+  <record name="plone.app.caching.strongCaching.etags">
+    <field type="plone.registry.field.Tuple">
+      <description>A list of ETag component names to include</description>
+      <required>False</required>
+      <title>ETags</title>
+      <value_type type="plone.registry.field.ASCIILine"/>
+    </field>
+    <value/>
+  </record>
+  <record name="plone.app.caching.strongCaching.lastModified">
+    <field type="plone.registry.field.Bool">
+      <description>Turn on Last-Modified headers</description>
+      <required>False</required>
+      <title>Last-modified validation</title>
+    </field>
+    <value>False</value>
+  </record>
+  <record name="plone.app.caching.strongCaching.maxage">
+    <field type="plone.registry.field.Int">
+      <description>Time (in seconds) to cache the response in the browser or caching proxy</description>
+      <required>False</required>
+      <title>Maximum age</title>
+    </field>
+    <value>86400</value>
+  </record>
+  <record name="plone.app.caching.strongCaching.plone.resource.lastModified">
+    <field ref="plone.app.caching.strongCaching.lastModified"/>
+    <value>True</value>
+  </record>
+  <record name="plone.app.caching.strongCaching.plone.resource.maxage">
+    <field ref="plone.app.caching.strongCaching.maxage"/>
+    <value>86400</value>
+  </record>
+  <record name="plone.app.caching.strongCaching.plone.stableResource.lastModified">
+    <field ref="plone.app.caching.strongCaching.lastModified"/>
+    <value>True</value>
+  </record>
+  <record name="plone.app.caching.strongCaching.plone.stableResource.maxage">
+    <field ref="plone.app.caching.strongCaching.maxage"/>
+    <value>31536000</value>
+  </record>
+  <record name="plone.app.caching.strongCaching.ramCache">
+    <field type="plone.registry.field.Bool">
+      <description>Turn on caching in Zope memory</description>
+      <required>False</required>
+      <title>RAM cache</title>
+    </field>
+    <value>False</value>
+  </record>
+  <record name="plone.app.caching.strongCaching.smaxage">
+    <field type="plone.registry.field.Int">
+      <description>Time (in seconds) to cache the response in the caching proxy. Leave blank to use value from "Maximum age" field.</description>
+      <required>False</required>
+      <title>Shared maximum age</title>
+    </field>
+    <value/>
+  </record>
+  <record name="plone.app.caching.strongCaching.vary">
+    <field type="plone.registry.field.ASCIILine">
+      <description>Name(s) of HTTP headers that must match for the caching proxy to return a cached response</description>
+      <required>False</required>
+      <title>Vary</title>
+    </field>
+    <value/>
+  </record>
+  <record name="plone.app.caching.weakCaching.anonOnly">
+    <field type="plone.registry.field.Bool">
+      <description>Ensure logging users always get a fresh page. Note that if you are caching pages in a proxy cache, you'll still need to use a Vary response header to keep anonymous and authenticated content separate.</description>
+      <required>False</required>
+      <title>Only cache for anonymous users</title>
+    </field>
+    <value>False</value>
+  </record>
+  <record name="plone.app.caching.weakCaching.etags">
+    <field type="plone.registry.field.Tuple">
+      <description>A list of ETag component names to include</description>
+      <required>False</required>
+      <title>ETags</title>
+      <value_type type="plone.registry.field.ASCIILine"/>
+    </field>
+    <value/>
+  </record>
+  <record name="plone.app.caching.weakCaching.lastModified">
+    <field type="plone.registry.field.Bool">
+      <description>Turn on Last-Modified headers</description>
+      <required>False</required>
+      <title>Last-modified validation</title>
+    </field>
+    <value>False</value>
+  </record>
+  <record name="plone.app.caching.weakCaching.plone.content.feed.etags">
+    <field ref="plone.app.caching.weakCaching.etags"/>
+    <value>
+      <element>userid</element>
+      <element>catalogCounter</element>
+      <element>userLanguage</element>
+      <element>skin</element>
+    </value>
+  </record>
+  <record name="plone.app.caching.weakCaching.plone.content.feed.ramCache">
+    <field ref="plone.app.caching.weakCaching.ramCache"/>
+    <value>True</value>
+  </record>
+  <record name="plone.app.caching.weakCaching.plone.content.file.lastModified">
+    <field ref="plone.app.caching.weakCaching.lastModified"/>
+    <value>True</value>
+  </record>
+  <record name="plone.app.caching.weakCaching.plone.content.folderView.etags">
+    <field ref="plone.app.caching.weakCaching.etags"/>
+    <value>
+      <element>userid</element>
+      <element>catalogCounter</element>
+      <element>userLanguage</element>
+      <element>skin</element>
+      <element>locked</element>
+      <element>copy</element>
+    </value>
+  </record>
+  <record name="plone.app.caching.weakCaching.plone.content.folderView.ramCache">
+    <field ref="plone.app.caching.weakCaching.ramCache"/>
+    <value>True</value>
+  </record>
+  <record name="plone.app.caching.weakCaching.plone.content.itemView.etags">
+    <field ref="plone.app.caching.weakCaching.etags"/>
+    <value>
+      <element>userid</element>
+      <element>catalogCounter</element>
+      <element>userLanguage</element>
+      <element>skin</element>
+      <element>locked</element>
+    </value>
+  </record>
+  <record name="plone.app.caching.weakCaching.plone.content.itemView.ramCache">
+    <field ref="plone.app.caching.weakCaching.ramCache"/>
+    <value>True</value>
+  </record>
+  <record name="plone.app.caching.weakCaching.ramCache">
+    <field type="plone.registry.field.Bool">
+      <description>Turn on caching in Zope memory</description>
+      <required>False</required>
+      <title>RAM cache</title>
+    </field>
+    <value>False</value>
+  </record>
+  <record name="plone.app.caching.weakCaching.vary">
+    <field type="plone.registry.field.ASCIILine">
+      <description>Name(s) of HTTP headers that must match for the caching proxy to return a cached response</description>
+      <required>False</required>
+      <title>Vary</title>
+    </field>
+    <value/>
+  </record>
+</registry>
+

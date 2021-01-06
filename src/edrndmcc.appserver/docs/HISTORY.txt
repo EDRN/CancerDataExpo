@@ -1,0 +1,64 @@
+Changelog
+=========
+
+
+1.2 4 — Upgrading
+-----------------
+
+• Added upgrade steps to install dependent add-ons when upgrading operational
+  DMCCBackend/CancerDataExpo site.
+
+
+1.2.3 — Integrating
+-------------------
+
+• Integrated edrn.summarizer with edrn.rdf to server more than just rdf but
+  also json data.
+
+
+1.2.2 — Packaging
+-----------------
+
+• Obey PyPI's new restrictions on package hosting, PEP-470.
+• Upgrade for Travis-CI container & caching mechanisms.
+
+
+1.2.1 — Pass the FLOSS
+----------------------
+
+This release makes the tests pass on Plone 4.2.2.  It also makes it free, libre,
+open source software.
+
+
+1.2.0 — Fully Webbed
+--------------------
+
+This release starts over with a fresh set of staff photographs and the
+SOAP-based web-service calling edrn.rdf package.  It also automates the setup
+of most settings.
+
+
+1.1.0 — Upgrade Containerize
+----------------------------
+
+This release makes edrndmcc.appserver compatible with:
+
+* Zope 2.13
+* Plone 4.1
+* plone.testing 4.0.2
+
+It also prepares the app server for decommissioning on ginger.fhcrc.org and
+relocating at the EDRN Informatics Center.
+
+
+1.0.0 — FCS
+-----------
+
+Official release ready-to-run.
+
+
+0.0.0 — Unreleased
+------------------
+
+* Initial release
+

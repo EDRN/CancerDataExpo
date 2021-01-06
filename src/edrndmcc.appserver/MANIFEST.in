@@ -1,0 +1,4 @@
+include *.rst
+recursive-include docs *
+recursive-include edrndmcc *.zcml *.png *.gif *.txt *.xml *.objects *.properties front-page
+exclude .gitignore

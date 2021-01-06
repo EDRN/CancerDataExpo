@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright 2008-2011 California Institute of Technology. ALL RIGHTS
+RESERVED. U.S. Government Sponsorship acknowledged.
+-->
+<configure
+    xmlns='http://namespaces.zope.org/zope'
+    xmlns:five='http://namespaces.zope.org/five'
+    xmlns:genericsetup='http://namespaces.zope.org/genericsetup'
+    xmlns:zcml='http://namespaces.zope.org/zcml'
+    i18n_domain='edrndmcc.appserver'>
+
+    <genericsetup:registerProfile 
+        name='default'
+        title='"Cancer Data Expo" Policy'
+        directory='profiles/default'
+        description='Turns a Plone site into a Cancer Data Expo.'
+        provides='Products.GenericSetup.interfaces.EXTENSION'
+    />
+
+    <genericsetup:importStep
+        name='edrndmcc.appserver'
+        title='Cancer Data Expo import handlers'
+        description='Creates support data for the Cancer Data Expo.'
+        handler='edrndmcc.appserver.setuphandlers.setupVarious'>
+        <depends name='content' />
+        <depends name='registry' />
+    </genericsetup:importStep>
+
+    <include
+        zcml:condition='installed Products.GenericSetup.upgrade'
+        file='upgrades.zcml'
+    />
+</configure>

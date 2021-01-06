@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright 2008—2020 California Institute of Technology. ALL RIGHTS
+RESERVED. U.S. Government Sponsorship acknowledged.
+-->
+<configure
+    xmlns='http://namespaces.zope.org/zope'
+    xmlns:browser='http://namespaces.zope.org/browser'
+    xmlns:zcml='http://namespaces.zope.org/zcml'
+    xmlns:genericsetup='http://namespaces.zope.org/genericsetup'
+    i18n_domain='edrn.rdf'>
+
+    <browser:resourceDirectory
+        name='edrn.rdf'
+        directory='static'
+    />
+    <genericsetup:registerProfile
+        name='default'
+        title='EDRN RDF Service'
+        directory='profiles/default'
+        description='RDF-based descriptions of EDRN resources'
+        provides='Products.GenericSetup.interfaces.EXTENSION'
+    />
+    <genericsetup:importStep
+        name='edrn.rdf'
+        title='EDRN RDF import handlers'
+        description='Creates initial set of RDF sources and generators'
+        handler='edrn.rdf.setuphandlers.setupVarious'>
+        <depends name='content' />
+    </genericsetup:importStep>
+    <include
+        zcml:condition='installed Products.GenericSetup.upgrade'
+        file='upgrades.zcml'
+    />
+
+    <!-- Root views -->
+    <browser:page
+        class='.siterdfupdater.SiteRDFUpdater'
+        for='plone.app.layout.navigation.interfaces.INavigationRoot'
+        name='updateRDF'
+        permission='cmf.ManagePortal'
+        template='siterdfupdater_templates/siterdfupdater.pt'
+    />
+
+    <!-- RDF production -->
+    <browser:page
+        class='.rdfsource.View'
+        for='.rdfsource.IRDFSource'
+        name='rdf'
+        permission='zope2.View'
+    />
+
+    <!-- Adapters for RDF graph generation -->
+    <adapter
+        factory='.biomutardfgenerator.BiomutaGraphGenerator'
+        provides='.interfaces.IGraphGenerator'
+        for='.biomutardfgenerator.IBiomutaRDFGenerator'
+    />
+    <adapter
+        factory='.dmcccommitteerdfgenerator.DMCCCommitteeGraphGenerator'
+        provides='.interfaces.IGraphGenerator'
+        for='.dmcccommitteerdfgenerator.IDMCCCommitteeRDFGenerator'
+    />
+    <adapter
+        factory='.dmccprotocolrdfgenerator.DMCCProtocolGraphGenerator'
+        provides='.interfaces.IGraphGenerator'
+        for='.dmccprotocolrdfgenerator.IDMCCProtocolRDFGenerator'
+    />
+    <adapter
+        factory='.nullrdfgenerator.NullGraphGenerator'
+        provides='.interfaces.IGraphGenerator'
+        for='.nullrdfgenerator.INullRDFGenerator'
+    />
+    <adapter
+        factory='.mutatinggraphgenerator.MutatingGraphGenerator'
+        provides='.interfaces.IGraphGenerator'
+        for='.mutatinggraphgenerator.IMutatingRDFGenerator'
+    />
+    <adapter
+        factory='.simpledmccrdfgenerator.SimpleDMCCGraphGenerator'
+        provides='.interfaces.IGraphGenerator'
+        for='.simpledmccrdfgenerator.ISimpleDMCCRDFGenerator'
+    />
+    <adapter
+        factory='.labcascollectionrdfgenerator.LabCASCollectionGraphGenerator'
+        provides='.interfaces.IGraphGenerator'
+        for='.labcascollectionrdfgenerator.ILabCASCollectionRDFGenerator'
+    />
+
+    <!-- Adapters for assertions of subjects via predicates -->
+    <adapter
+        factory='.literalpredicatehandler.LiteralAsserter'
+        provides='.interfaces.IAsserter'
+        for='.literalpredicatehandler.ILiteralPredicateHandler'
+    />
+    <adapter
+        factory='.multiliteralpredicatehandler.MultiLiteralAsserter'
+        provides='.interfaces.IAsserter'
+        for='.multiliteralpredicatehandler.IMultiLiteralPredicateHandler'
+    />
+    <adapter
+        factory='.referencepredicatehandler.ReferenceAsserter'
+        provides='.interfaces.IAsserter'
+        for='.referencepredicatehandler.IReferencePredicateHandler'
+    />
+
+    <!-- Adapters for updating RDF -->
+    <adapter
+        factory='.rdfupdater.RDFUpdater'
+        provides='.interfaces.IRDFUpdater'
+        for='.rdfsource.IRDFSource'
+    />
+
+
+
+</configure>

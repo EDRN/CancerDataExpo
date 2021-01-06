@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<portlets purge="False">
+    <assignment name="footer" category="context" key="/" manager="plone.footerportlets" type="portlets.Classic" visible="False">
+        <property name="macro"/>
+        <property name="template">@@footer</property>
+    </assignment>
+    <assignment name="actions" category="context" key="/" manager="plone.footerportlets" type="portlets.Actions" visible="False">
+        <property name="category">site_actions</property>
+        <property name="default_icon">action_icon.png</property>
+        <property name="ptitle">site_actions</property>
+        <property name="show_icons">False</property>
+        <property name="show_title">False</property>
+    </assignment>
+    <assignment name="colophon" category="context" key="/" manager="plone.footerportlets" type="portlets.Classic" visible="False">
+        <property name="macro"/>
+        <property name="template">colophon</property>
+    </assignment>
+</portlets>
