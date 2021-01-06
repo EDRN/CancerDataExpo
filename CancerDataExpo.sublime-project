@@ -3,7 +3,6 @@
       {
          "folder_exclude_patterns" : [
             "bin",
-            "dep-src",
             "develop-eggs",
             "dist",
             "build",
@@ -11,14 +10,15 @@
             "parts",
             "var",
             "python*",
-            "src"
+            "__pycache__",
          ],
          "path" : ".",
          "file_exclude_patterns" : [
             ".*.cfg",
             "bootstrap.py",
             "doc.txt",
-            "*.sublime-*"
+            "*.sublime-*",
+            "*.py[cod]"
          ]
       }
    ]
