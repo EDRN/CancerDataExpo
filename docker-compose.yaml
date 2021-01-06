@@ -1,0 +1,93 @@
+# Docker Composition for the CancerDataExpo
+# =========================================
+
+---
+services:
+    appserver:
+        image: cancerdataexpo:${EDRN_CANCERDATAEXPO_VERSION:-latest}
+        # image: nutjob4life/cancerdataexpo:${EDRN_CANCERDATAEXPO_VERSION:-latest}
+        volumes:
+            -
+                type: bind
+                source: ${EDRN_CANCERDATAEXPO_DATA}/blobstorage
+                target: /data/blobstorage
+                consistency: consistent
+            -
+                type: bind
+                source: ${EDRN_CANCERDATAEXPO_DATA}/log
+                target: /data/log
+                consistency: delegated
+        ports:
+            -
+                target: 8080
+                published: ${EDRN_CANCERDATAEXPO_PORT:-2131}
+                protocol: tcp
+                mode: host
+        networks:
+            -   frontsidebus
+            -   default
+        environment:
+            EDRN_CANCERDATAEXPO_VERSION:
+            EDRN_CANCERDATAEXPO_DATA:
+            EDRN_CANCERDATAEXPO_PORT:
+            ZEO_ADDRESS: db:8080
+            ZEO_SHARED_BLOB_DIR: 'on'
+        depends_on:
+            -   db
+            -   memory-cache
+        restart: on-failure
+        stop_grace_period: 93s
+        labels:
+            org.label-schema.name: CancerDataExpo Application Server
+            org.label-schema.description: Zope appserver running the exposition for cancer data.
+    db:
+        image: cancerdataexpo:${EDRN_CANCERDATAEXPO_VERSION:-latest}
+        # image: nutjob4life/cancerdataexpo:${EDRN_CANCERDATAEXPO_VERSION:-latest}
+        command: zeo
+        volumes:
+            -
+                type: bind
+                source: ${EDRN_CANCERDATAEXPO_DATA}/filestorage
+                target: /data/filestorage
+                consistency: consistent
+            -
+                type: bind
+                source: ${EDRN_CANCERDATAEXPO_DATA}/blobstorage
+                target: /data/blobstorage
+                consistency: consistent
+            -
+                type: bind
+                source: ${EDRN_CANCERDATAEXPO_DATA}/log
+                target: /data/log
+                consistency: delegated
+        networks:
+            -   frontsidebus
+            -   default
+        environment:
+            EDRN_CANCERDATAEXPO_DATA:
+            EDRN_CANCERDATAEXPO_VERSION:
+        restart: on-failure
+        stop_grace_period: 37s
+        labels:
+            org.label-schema.name: CancerDataExpo DB Server
+            org.label-schema.description: Zope Enterprise Objects DB server for the cancer data exposition.
+    memory-cache:
+        image: memcached
+        networks:
+            -   frontsidebus
+        restart: on-failure
+        stop_grace_period: 23s
+        labels:
+            org.label-schema.name: CancerDataExpo Memcached
+            org.label-schema.description: Memory cached for the cancer data exposition.
+networks:
+    frontsidebus:
+        driver: bridge
+        labels:
+            org.label-schema.name: CancerDataExpo Front Side Bus
+            org.label-schema.description: Internal bridge network for IPC amongst CancerDataExpo services.
+    default:
+        driver: bridge
+version: '3.9'
+
+...
