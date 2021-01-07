@@ -99,6 +99,9 @@ You can check the logs with:
             --project-name cancerdataexpo \
             logs --follow
 
+**📝 Note:** With no existing database, the initiall startup might fail (see the logs, message "Resource Busy"). If this happens, stop it and start it again.
+
+
 Once this is up and running, head to http://localhost:${EDRN_CANCERDATAEXPO_PORT}/manage_main and log in (with username `admin` and password `admin`) and change the default password in the `acl_users` object. Next, create an instance of the CancerDataExpo by visiting http://localhost:${EDRN_CANCERDATAEXPO_PORT}/@@plone-addsite?site_id=Plone&advanced=1 and entering the following:
 
 -   Path identifier: `cancerdataexpo`
