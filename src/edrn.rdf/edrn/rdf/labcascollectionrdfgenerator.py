@@ -80,9 +80,12 @@ class LabCASCollectionGraphGenerator(object):
         solr = Solr(context.labcasSolrURL, auth=(context.username, context.password))
         results = solr.search(q='*:*', rows=999999)  # 😮 TODO This'll fail once we get to a million collections
         for i in results:
-            collectionID, name = i.get('id'), i.get('CollectionName', '«unknown»')
+            collectionID, name, consortia = i.get('id'), i.get('CollectionName', '«unknown»'), i.get('Consortium', [])
             if not collectionID:
                 _logger.warn('😮 The ``id`` is missing from a LabCAS collection named %s; skipping', name)
+                continue
+            if 'EDRN' not in consortia:
+                _logger.warn('😌 Collection ``%s`` belongs to %r, not EDRN, so skipping it', collectionID, consortia)
                 continue
             subjectURI = URIRef(_subjectPrefix + collectionID)  # ⚠️ Note that we are not URI-escaping anything here, hope that's oK!
             graph.add((subjectURI, rdflib.RDF.type, URIRef(_typeURI)))
