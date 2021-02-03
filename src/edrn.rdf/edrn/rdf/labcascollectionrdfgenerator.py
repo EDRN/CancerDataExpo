@@ -23,6 +23,10 @@ _piPredicateURI = URIRef('urn:edrn:predicates:pi')
 _organPredicateURI = URIRef('urn:edrn:predicates:organ')
 _protocolPredicateURI = URIRef('urn:edrn:predicates:protocol')
 _collaborativeGroupPredicateURI = URIRef('urn:edrn:predicates:collaborativeGroup')
+_cardinalityPredicateURI = URIRef('urn:edrn:predicates:cardinality')
+
+# Type URIs
+_statsTypeURI = URIRef('urn:edrn:types:labcas:statistics')
 
 # URI prefixes
 _protocolPrefix = 'http://edrn.nci.nih.gov/data/protocols/'
@@ -51,11 +55,11 @@ _inconsistentCollaborativeGroupNaming = {
 class ILabCASCollectionRDFGenerator(IRDFGenerator):
     '''Generator for RDF using data from LabCAS.'''
     labcasSolrURL = schema.TextLine(
-        title=_('LabCAS Solr URL'),
-        description=_('The Uniform Resource Locator to the collections search using Solr.'),
+        title=_('LabCAS Data Access API URL'),
+        description=_('The Uniform Resource Locator to the LabCAS API.'),
         required=True,
         constraint=validateAccessibleURL,
-        default='https://edrn-labcas.jpl.nasa.gov/data-access-api/collections'
+        default='https://edrn-labcas.jpl.nasa.gov/data-access-api'
     )
     username = schema.TextLine(
         title=_('Username'),
@@ -77,8 +81,13 @@ class LabCASCollectionGraphGenerator(object):
     def generateGraph(self):
         context = aq_inner(self.context)
         graph = rdflib.Graph()
-        solr = Solr(context.labcasSolrURL, auth=(context.username, context.password))
+        solr = Solr(context.labcasSolrURL + '/datasets', auth=(context.username, context.password))
+        numDatasets = solr.search(q='*:*', rows=0).hits
+        solr = Solr(context.labcasSolrURL + '/files', auth=(context.username, context.password))
+        numFiles = solr.search(q='*:*', rows=0).hits
+        solr = Solr(context.labcasSolrURL + '/collections', auth=(context.username, context.password))
         results = solr.search(q='*:*', rows=999999)  # 😮 TODO This'll fail once we get to a million collections
+        numCollections = results.hits
         for i in results:
             collectionID, name, consortia = i.get('id'), i.get('CollectionName', '«unknown»'), i.get('Consortium', [])
             if not collectionID:
@@ -104,4 +113,13 @@ class LabCASCollectionGraphGenerator(object):
                 group = _inconsistentCollaborativeGroupNaming.get(group)
                 if group is not None:
                     graph.add((subjectURI, _collaborativeGroupPredicateURI, Literal(group)))
+
+        # And summary info
+        graph.add((URIRef(context.labcasSolrURL + '/collections'), _cardinalityPredicateURI, Literal(str(numCollections))))
+        graph.add((URIRef(context.labcasSolrURL + '/collections'), rdflib.RDF.type, _statsTypeURI))
+        graph.add((URIRef(context.labcasSolrURL + '/datasets'), _cardinalityPredicateURI, Literal(str(numDatasets))))
+        graph.add((URIRef(context.labcasSolrURL + '/datasets'), rdflib.RDF.type, _statsTypeURI))
+        graph.add((URIRef(context.labcasSolrURL + '/files'), _cardinalityPredicateURI, Literal(str(numFiles))))
+        graph.add((URIRef(context.labcasSolrURL + '/files'), rdflib.RDF.type, _statsTypeURI))
+
         return graph

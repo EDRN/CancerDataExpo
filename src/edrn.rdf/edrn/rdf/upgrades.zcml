@@ -31,4 +31,13 @@ RESERVED. U.S. Government Sponsorship acknowledged.
         handler='edrn.rdf.upgrades.upgrade4to5'
         sortkey='1'
     />
+    <genericsetup:upgradeStep
+        source='5'
+        destination='6'
+        title='Upgrade 5 to 6'
+        description='Set the new LabCAS URL etc.'
+        profile='edrn.rdf:default'
+        handler='edrn.rdf.upgrades.upgrade5to6'
+        sortkey='1'
+    />
 </configure>

@@ -5,6 +5,7 @@
 from .setuphandlers import publish
 from edrn.rdf import DEFAULT_PROFILE
 from plone.dexterity.utils import createContentInContainer
+from edrn.rdf.labcascollectionrdfgenerator import ILabCASCollectionRDFGenerator
 import plone.api
 
 
@@ -48,3 +49,10 @@ def upgrade4to5(setupTool):
                     uriPrefix='http://edrn.nci.nih.gov/data/sites/'
                 )
                 publish(predicate, plone.api.portal.get_tool('portal_workflow'))
+
+
+def upgrade5to6(setupTool):
+    catalog = plone.api.portal.get_tool('portal_catalog')
+    for brain in catalog(object_provides=ILabCASCollectionRDFGenerator.__identifier__):
+        obj = brain.getObject()
+        obj.labcasSolrURL = 'https://edrn-labcas.jpl.nasa.gov/data-access-api'
