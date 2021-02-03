@@ -4,8 +4,8 @@
 ---
 services:
     appserver:
-        image: cancerdataexpo:${EDRN_CANCERDATAEXPO_VERSION:-latest}
-        # image: nutjob4life/cancerdataexpo:${EDRN_CANCERDATAEXPO_VERSION:-latest}
+        # image: cancerdataexpo:${EDRN_CANCERDATAEXPO_VERSION:-latest}
+        image: nutjob4life/cancerdataexpo:${EDRN_CANCERDATAEXPO_VERSION:-latest}
         volumes:
             -
                 type: bind
@@ -41,8 +41,8 @@ services:
             org.label-schema.name: CancerDataExpo Application Server
             org.label-schema.description: Zope appserver running the exposition for cancer data.
     db:
-        image: cancerdataexpo:${EDRN_CANCERDATAEXPO_VERSION:-latest}
-        # image: nutjob4life/cancerdataexpo:${EDRN_CANCERDATAEXPO_VERSION:-latest}
+        # image: cancerdataexpo:${EDRN_CANCERDATAEXPO_VERSION:-latest}
+        image: nutjob4life/cancerdataexpo:${EDRN_CANCERDATAEXPO_VERSION:-latest}
         command: zeo
         volumes:
             -
