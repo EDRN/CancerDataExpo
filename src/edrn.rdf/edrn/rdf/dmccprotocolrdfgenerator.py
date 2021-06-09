@@ -1,5 +1,5 @@
 # encoding: utf-8
-# Copyright 2012 California Institute of Technology. ALL RIGHTS
+# Copyright 2012–2021 California Institute of Technology. ALL RIGHTS
 # RESERVED. U.S. Government Sponsorship acknowledged.
 
 '''DMCC Protocol RDF Generator. An RDF generator that describes EDRN protocols using the DMCC's bungling web services.
@@ -177,6 +177,12 @@ class IDMCCProtocolRDFGenerator(IRDFGenerator):
         title=_('Cancer Type URI'),
         description=_('Uniform Resource Identifier for the cancer type predicate.'),
         required=True,
+    )
+    cancerTypeURIPrefix = schema.TextLine(
+        title=_('Disease URI Prefix'),
+        description=_('URI prefix to identity Disease objects for the cancer type studied by a protocol.'),
+        required=True,
+        default='http://edrn.nci.nih.gov/data/diseases/'
     )
     commentsURI = schema.TextLine(
         title=_('Comments URI'),
@@ -412,7 +418,6 @@ _miscSlots = {
     'Protocol_Aims':                        'aimsURI',
     'Protocol_Analytic_Method':             'analyticMethodURI',
     'Protocol_Blinding':                    'blindingURI',
-    'Protocol_Cancer_Type':                 'cancerTypeURI',
     'Protocol_Collaborative_Group':         'collaborativeGroupTextURI',
     'Protocol_Comments':                    'commentsURI',
     'Protocol_Data_Sharing_Plan':           'dataSharingPlanURI',
@@ -484,12 +489,21 @@ class Protocol(_Slotted):
             if not obj: continue
             predicateURI = URIRef(getattr(context, predicateFieldName))
             graph.add((subjectURI, predicateURI, Literal(obj)))
+    def _addCancerTypes(self, graph, context):
+        subjectURI, predicateURI = self.getSubjectURI(context), URIRef(context.cancerTypeURI)
+        values = self.slots.get('Protocol_Cancer_Type', '')
+        for value in values.strip().split(', '):
+            value = value.strip()
+            if value:
+                graph.add((subjectURI, predicateURI, URIRef(context.cancerTypeURIPrefix + value)))
     def addToGraph(self, graph, specifics, context):
         self._addInvolvedInvestigatorSites(graph, specifics, context)
         self._addOtherSites(graph, context)
         self._addPublications(graph, context)
         self._addFieldsOfResearch(graph, context)
+        self._addCancerTypes(graph, context)
         self._addMiscFields(graph, context)
+
 
 _specificsMap = {
     'Animal_Subject_Training_Received': 'animalTraining',

@@ -4,17 +4,16 @@
 ---
 services:
     appserver:
-        # image: cancerdataexpo:${EDRN_CANCERDATAEXPO_VERSION:-latest}
-        image: nutjob4life/cancerdataexpo:${EDRN_CANCERDATAEXPO_VERSION:-latest}
+        image: ${EDRN_IMAGE_OWNER-nutjob4life/}cancerdataexpo:${EDRN_CANCERDATAEXPO_VERSION:-latest}
         volumes:
             -
                 type: bind
-                source: ${EDRN_CANCERDATAEXPO_DATA}/blobstorage
+                source: ${EDRN_CANCERDATAEXPO_DATA:-/usr/local/labcas/cancerdataexpo/docker-data}/blobstorage
                 target: /data/blobstorage
                 consistency: consistent
             -
                 type: bind
-                source: ${EDRN_CANCERDATAEXPO_DATA}/log
+                source: ${EDRN_CANCERDATAEXPO_DATA:-/usr/local/labcas/cancerdataexpo/docker-data}/log
                 target: /data/log
                 consistency: delegated
         ports:
@@ -41,23 +40,22 @@ services:
             org.label-schema.name: CancerDataExpo Application Server
             org.label-schema.description: Zope appserver running the exposition for cancer data.
     db:
-        # image: cancerdataexpo:${EDRN_CANCERDATAEXPO_VERSION:-latest}
-        image: nutjob4life/cancerdataexpo:${EDRN_CANCERDATAEXPO_VERSION:-latest}
+        image: ${EDRN_IMAGE_OWNER-nutjob4life/}cancerdataexpo:${EDRN_CANCERDATAEXPO_VERSION:-latest}
         command: zeo
         volumes:
             -
                 type: bind
-                source: ${EDRN_CANCERDATAEXPO_DATA}/filestorage
+                source: ${EDRN_CANCERDATAEXPO_DATA:-/usr/local/labcas/cancerdataexpo/docker-data}/filestorage
                 target: /data/filestorage
                 consistency: consistent
             -
                 type: bind
-                source: ${EDRN_CANCERDATAEXPO_DATA}/blobstorage
+                source: ${EDRN_CANCERDATAEXPO_DATA:-/usr/local/labcas/cancerdataexpo/docker-data}/blobstorage
                 target: /data/blobstorage
                 consistency: consistent
             -
                 type: bind
-                source: ${EDRN_CANCERDATAEXPO_DATA}/log
+                source: ${EDRN_CANCERDATAEXPO_DATA:-/usr/local/labcas/cancerdataexpo/docker-data}/log
                 target: /data/log
                 consistency: delegated
         networks:
@@ -72,7 +70,7 @@ services:
             org.label-schema.name: CancerDataExpo DB Server
             org.label-schema.description: Zope Enterprise Objects DB server for the cancer data exposition.
     memory-cache:
-        image: memcached
+        image: memcached:1.6.9-alpine
         networks:
             -   frontsidebus
         restart: on-failure

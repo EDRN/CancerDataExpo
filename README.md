@@ -59,6 +59,7 @@ Here are the environment variables you'll need to set (substituting values betwe
 -   `EDRN_CANCERDATAEXPO_DATA` — set to a path to contain blobstorage, filestorage, and logs.
 -   `EDRN_CANCERDATAEXPO_PORT` — set to a free port number
 -   `EDRN_CANCERDATAEXPO_VERSION` — set to a version number of `latest`
+-   `EDRN_IMAGE_OWNER` — set to `nutjob4life` or leave it blank to use your local Docker containers
 
 
 ### 🧱 Building the Image
@@ -89,18 +90,15 @@ To run the CancerDataExpo for the **first time**, create empty directories to ho
             --project-name cancerdataexpo \
             up --detach
 
+The `docker-compose.yaml` assumes that `EDRN_CANCERDATAEXPO_DATA` is `usr/local/labcas/cancerdataexpo/docker-data` which is appropriate for `edrn-docker.jpl.nasa.gov` where this normally runs, and that `EDRN_CANCERDATAEXPO_PORT` is 2131, and that `EDRN_CANCERDATAEXPO_VERSION` is `latest`, so you can simply say:
+
+    docker-compose --project-name cancerdataexpo up --detach
+
 You can check the logs with:
 
-    env \
-        EDRN_CANCERDATAEXPO_DATA=/usr/local/labcas/cancerdataexpo/docker-data \
-        EDRN_CANCERDATAEXPO_VERSION=latest \
-        EDRN_CANCERDATAEXPO_PORT=2131 \
-        docker-compose \
-            --project-name cancerdataexpo \
-            logs --follow
+    docker-compose --project-name cancerdataexpo logs --follow
 
 **📝 Note:** With no existing database, the initiall startup might fail (see the logs, message "Resource Busy"). If this happens, stop it and start it again.
-
 
 Once this is up and running, head to http://localhost:${EDRN_CANCERDATAEXPO_PORT}/manage_main and log in (with username `admin` and password `admin`) and change the default password in the `acl_users` object. Next, create an instance of the CancerDataExpo by visiting http://localhost:${EDRN_CANCERDATAEXPO_PORT}/@@plone-addsite?site_id=Plone&advanced=1 and entering the following:
 
@@ -123,25 +121,14 @@ Then click "Save". Lastly, head to the RDF Generators and give the LabCAS genera
 
 Need to bring it all down?
 
-    env \
-        EDRN_CANCERDATAEXPO_DATA=/usr/local/labcas/cancerdataexpo/docker-data \
-        EDRN_CANCERDATAEXPO_VERSION=latest \
-        EDRN_CANCERDATAEXPO_PORT=2131 \
-        docker-compose \
-            --project-name cancerdataexpo \
-            down
+    docker-compose --project-name cancerdataexpo down
+
 
 ### 🎽 Subsequent Runs
 
 Start it up again?
 
-    env \
-        EDRN_CANCERDATAEXPO_DATA=/usr/local/labcas/cancerdataexpo/docker-data \
-        EDRN_CANCERDATAEXPO_VERSION=latest \
-        EDRN_CANCERDATAEXPO_PORT=2131 \
-        docker-compose \
-            --project-name cancerdataexpo \
-            up --detach
+    docker-compose --project-name cancerdataexpo up --detach
 
 
 #### 🐛 Advanced Debugging
@@ -160,5 +147,3 @@ Add a Manager user (not through the web, like above):
 Get a shell:
 
     docker container run --volume ${EDRN_CANCERDATAEXPO_DATA}/blobstorage:/data/blobstorage --tty --rm --interactive --network cancerdataexpo_frontsidebus --entrypoint /bin/bash cancerdataexpo:latest
-
-
