@@ -24,6 +24,8 @@ _organPredicateURI = URIRef('urn:edrn:predicates:organ')
 _protocolPredicateURI = URIRef('urn:edrn:predicates:protocol')
 _collaborativeGroupPredicateURI = URIRef('urn:edrn:predicates:collaborativeGroup')
 _cardinalityPredicateURI = URIRef('urn:edrn:predicates:cardinality')
+_ownerPrincipal = URIRef('urn:edrn:predicates:ownerPrincipal')
+_qaState = URIRef('urn:edrn:predicates:qaState')
 
 # Type URIs
 _statsTypeURI = URIRef('urn:edrn:types:labcas:statistics')
@@ -113,6 +115,13 @@ class LabCASCollectionGraphGenerator(object):
                 group = _inconsistentCollaborativeGroupNaming.get(group)
                 if group is not None:
                     graph.add((subjectURI, _collaborativeGroupPredicateURI, Literal(group)))
+            for owner in i.get('OwnerPrincipal', []):
+                # Work around https://github.com/EDRN/EDRN-metadata/issues/63
+                if owner.startswith('OwnerPrincipal='):
+                    owner = owner[15:]
+                graph.add((subjectURI, _ownerPrincipal, Literal(owner)))
+            for qaState in i.get('QAState', []):
+                graph.add((subjectURI, _qaState, Literal(qaState)))
 
         # And summary info
         graph.add((URIRef(context.labcasSolrURL + '/collections'), _cardinalityPredicateURI, Literal(str(numCollections))))

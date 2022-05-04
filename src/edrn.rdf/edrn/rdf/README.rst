@@ -806,8 +806,8 @@ And now for the RDF::
     >>> graph = rdflib.Graph()
     >>> graph.parse(data=browser.contents)
     <Graph identifier=...(<class 'rdflib.graph.Graph'>)>
-    >>> len(graph)
-    9422
+    >>> len(graph) > 9422
+    True
     >>> subjects = frozenset([str(i) for i in graph.subjects() if str(i)])
     >>> subjects = list(subjects)
     >>> subjects.sort()

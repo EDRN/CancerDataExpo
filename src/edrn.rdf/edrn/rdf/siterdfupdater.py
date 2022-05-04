@@ -30,7 +30,7 @@ class SiteRDFUpdater(BrowserView):
                 updater.updateRDF()
                 self.count += 1
             except Exception as ex:
-                _logger.exception('Failure updating RDF for "%s"', i.getPath())
+                _logger.exception('Failure updating RDF for "%s"', '/'.join(source.getPhysicalPath()))
                 self.failures.append(dict(title=i.Title, url=source.absolute_url(), message=str(ex)))
         self.numFailed = len(self.failures)
         return self.render()

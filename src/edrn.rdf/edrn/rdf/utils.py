@@ -77,7 +77,7 @@ def parseTokens(s):
 # The ZPL 1.0 applies.
 
 try:
-    from zope.site.hooks import getSite
+    from zope.component.hooks import getSite
     _get_default_context = getSite
 except ImportError:
     try:
