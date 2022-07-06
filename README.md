@@ -52,14 +52,28 @@ curl --http1.1 --verbose --request POST \
 The answer will then be in the result element of the response element of the envelope element of the XML document in `/tmp/result.xml`.
 
 
+## 🔧 Developing
+
+**👉 Note:** Plone 5.2.2 (used here) is not compatible with any Python newer than 3.8. Stick with 3.8.
+
+Do the following:
+```console
+python3.8 -m venv venv
+venv/bin/pip install --upgrade pip build wheel zc.buildout setuptools==42.0.2 numpy==1.19.3
+venv/bin/buildout -c dev.cfg
+```
+
+You can then run: `bin/zope-debug fg`.
+
+
 ## 🚀 Deploying the Cancer Data Expo
 
 Here are the environment variables you'll need to set (substituting values between development and production):
 
 -   `EDRN_CANCERDATAEXPO_DATA` — set to a path to contain blobstorage, filestorage, and logs.
 -   `EDRN_CANCERDATAEXPO_PORT` — set to a free port number
--   `EDRN_CANCERDATAEXPO_VERSION` — set to a version number of `latest`
--   `EDRN_IMAGE_OWNER` — set to `nutjob4life` or leave it blank to use your local Docker containers
+-   `EDRN_CANCERDATAEXPO_VERSION` — set to a version number or `latest`
+-   `EDRN_IMAGE_OWNER` — set to `nutjob4life` or leave it blank to use your local Docker images
 
 
 ### 🧱 Building the Image
@@ -90,7 +104,7 @@ To run the CancerDataExpo for the **first time**, create empty directories to ho
             --project-name cancerdataexpo \
             up --detach
 
-The `docker-compose.yaml` assumes that `EDRN_CANCERDATAEXPO_DATA` is `usr/local/labcas/cancerdataexpo/docker-data` which is appropriate for `edrn-docker.jpl.nasa.gov` where this normally runs, and that `EDRN_CANCERDATAEXPO_PORT` is 2131, and that `EDRN_CANCERDATAEXPO_VERSION` is `latest`, so you can simply say:
+The `docker-compose.yaml` assumes that `EDRN_CANCERDATAEXPO_DATA` is `/usr/local/labcas/cancerdataexpo/docker-data` which is appropriate for `edrn-docker.jpl.nasa.gov` where this normally runs, and that `EDRN_CANCERDATAEXPO_PORT` is 2131, and that `EDRN_CANCERDATAEXPO_VERSION` is `latest`, so you can simply say:
 
     docker-compose --project-name cancerdataexpo up --detach
 

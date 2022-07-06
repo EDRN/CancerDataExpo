@@ -23,6 +23,8 @@ _piPredicateURI = URIRef('urn:edrn:predicates:pi')
 _organPredicateURI = URIRef('urn:edrn:predicates:organ')
 _protocolPredicateURI = URIRef('urn:edrn:predicates:protocol')
 _collaborativeGroupPredicateURI = URIRef('urn:edrn:predicates:collaborativeGroup')
+_discplinePredicateURI = URIRef('urn:edrn:predicates:discipline')
+_dataCategoryPredicateURI = URIRef('urn:edrn:predicates:dataCategory')
 _cardinalityPredicateURI = URIRef('urn:edrn:predicates:cardinality')
 _ownerPrincipal = URIRef('urn:edrn:predicates:ownerPrincipal')
 _qaState = URIRef('urn:edrn:predicates:qaState')
@@ -115,6 +117,10 @@ class LabCASCollectionGraphGenerator(object):
                 group = _inconsistentCollaborativeGroupNaming.get(group)
                 if group is not None:
                     graph.add((subjectURI, _collaborativeGroupPredicateURI, Literal(group)))
+            for discipline in i.get('Discipline', []):
+                graph.add((subjectURI, _discplinePredicateURI, Literal(discipline)))
+            for category in i.get('DataCategory', []):
+                graph.add((subjectURI, _dataCategoryPredicateURI, Literal(category)))
             for owner in i.get('OwnerPrincipal', []):
                 # Work around https://github.com/EDRN/EDRN-metadata/issues/63
                 if owner.startswith('OwnerPrincipal='):

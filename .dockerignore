@@ -22,3 +22,4 @@ jenkins.cfg
 parts
 support
 var
+venv
