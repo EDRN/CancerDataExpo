@@ -17,7 +17,7 @@ from zope import schema
 from zope.component import queryUtility
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 from .exceptions import MissingParameterError
-import jsonlib
+import json
 
 COLLABORATIVE_GROUP_BMDB_IDS_TO_NAMES = {
     Literal('Breast and Gynecologic'):          Literal('Breast and Gynecologic Cancers Research Group'),
@@ -148,7 +148,7 @@ class CollaborationJsonGenerator(object):
             raise MissingParameterError(_('This generator folder lacks one or both of its RDF source URLs.'))
         normalizerFunction = queryUtility(IIDNormalizer).normalize
         graph = ConjunctiveGraph()
-        graph.parse(URLInputSource(bmDataSource))
+        graph.parse(URLInputSource(bmDataSource), format='xml')
         statements = self._parseRDF(graph)
 
         allBiomarkers = {}
@@ -187,14 +187,14 @@ class CollaborationJsonGenerator(object):
                 collabDataFreq = self.updateCollaborativeGroup(predicates[_datasetIdURI], predicates[_collaborativeGroupDataURI], allDatasets, collabDataFreq)
 
         graph = ConjunctiveGraph()
-        graph.parse(URLInputSource(protocolDataSource))
+        graph.parse(URLInputSource(protocolDataSource), format='xml')
         statements = self._parseRDF(graph)
         for uri, predicates in statements.items():
             if _collaborativeGroupProURI in predicates:
                 collabProtoFreq = self.updateCollaborativeGroup(predicates[_protocolNameURI], predicates[_collaborativeGroupProURI], allProtocols, collabProtoFreq)
 
         graph = ConjunctiveGraph()
-        graph.parse(URLInputSource(memberDataSource))
+        graph.parse(URLInputSource(memberDataSource), format='xml')
         statements = self._parseRDF(graph)
         for uri, predicates in statements.items():
             if _memberPredicateURI in predicates:
@@ -205,4 +205,4 @@ class CollaborationJsonGenerator(object):
         jsondata = {"biomarker" : collabBmFreq, "panel" : collabPnFreq, "data" : collabDataFreq, "protocol" : collabProtoFreq, "member" : collabMemFreq}
 
         # C'est tout.
-        return jsonlib.write(jsondata)
+        return json.dumps(jsondata)

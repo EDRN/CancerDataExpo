@@ -31,7 +31,7 @@ _requirements = [
     'plone.app.relationfield',
     'plone.behavior',
     'Products.CMFPlone',
-    'rdflib==4.2.2',
+    'rdflib==6.2.0',
     'setuptools',
     'z3c.relationfield',
     'suds2',

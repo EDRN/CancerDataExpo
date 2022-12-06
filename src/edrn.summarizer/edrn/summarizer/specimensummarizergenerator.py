@@ -15,7 +15,7 @@ from .summarizergenerator import ISummarizerGenerator
 from .utils import validateAccessibleURL
 from zope import schema
 import urllib
-import jsonlib
+import json
 
 # Site identifier to ERNE identifier
 SITES = {
@@ -118,4 +118,4 @@ class SpecimenJsonGenerator(object):
                 specimenCount = self.getSpecimens(erneID, erneWS)
 
         # C'est tout.
-        return jsonlib.write(specimenCount)
+        return json.dumps(specimenCount)

@@ -41,9 +41,13 @@ class RDFUpdater(object):
         # Is there an active file?
         if context.approvedFile:
             # Is it identical to what we just generated?
-            current = Graph().parse(data=context.approvedFile.to_object.file.data)
-            if isomorphic(graph, current):
-                raise NoUpdateRequired(context)
+            try:
+                current = Graph().parse(data=context.approvedFile.to_object.file.data, format='xml')
+                if isomorphic(graph, current):
+                    raise NoUpdateRequired(context)
+            except AttributeError:
+                # File not found
+                pass
 
         # Create a new file and set it active
         # TODO: Add validation steps here

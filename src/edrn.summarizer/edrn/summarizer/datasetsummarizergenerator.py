@@ -14,7 +14,7 @@ from rdflib.parser import URLInputSource
 from rdflib import ConjunctiveGraph
 from .utils import validateAccessibleURL
 from zope import schema
-import jsonlib
+import json
 
 
 _organPredicateURI      = URIRef('http://edrn.nci.nih.gov/rdf/schema.rdf#organ')
@@ -50,7 +50,7 @@ class DatasetJsonGenerator(object):
         context = aq_inner(self.context)
         statements = {}
         graph = ConjunctiveGraph()
-        graph.parse(URLInputSource(context.rdfDataSource))
+        graph.parse(URLInputSource(context.rdfDataSource), format='xml')
         self.addGraphToStatements(graph, statements)
         return statements
 
@@ -67,4 +67,4 @@ class DatasetJsonGenerator(object):
                 organDatasetCount[organ] = 1
 
         # C'est tout.
-        return jsonlib.write(organDatasetCount)
+        return json.dumps(organDatasetCount)

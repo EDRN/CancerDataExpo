@@ -311,7 +311,7 @@ And now::
     'application/rdf+xml'
     >>> import rdflib
     >>> graph = rdflib.Graph()
-    >>> graph.parse(data=browser.contents)
+    >>> graph.parse(data=browser.contents, format='xml')
     <Graph identifier=...(<class 'rdflib.graph.Graph'>)>
     >>> len(graph)
     68
@@ -431,7 +431,7 @@ And now::
 
     >>> browser.open(portalURL + '/a-simple-source/@@rdf')
     >>> graph = rdflib.Graph()
-    >>> graph.parse(data=browser.contents)
+    >>> graph.parse(data=browser.contents, format='xml')
     <Graph identifier=...(<class 'rdflib.graph.Graph'>)>
     >>> len(graph)
     124
@@ -541,7 +541,7 @@ And now for the RDF::
 
     >>> browser.open(portalURL + '/a-simple-source/@@rdf')
     >>> graph = rdflib.Graph()
-    >>> graph.parse(data=browser.contents)
+    >>> graph.parse(data=browser.contents, format='xml')
     <Graph identifier=...(<class 'rdflib.graph.Graph'>)>
     >>> len(graph)
     31809
@@ -672,7 +672,7 @@ And now for the RDF::
 
     >>> browser.open(portalURL + '/a-committee-source/@@rdf')
     >>> graph = rdflib.Graph()
-    >>> graph.parse(data=browser.contents)
+    >>> graph.parse(data=browser.contents, format='xml')
     <Graph identifier=...(<class 'rdflib.graph.Graph'>)>
     >>> len(graph)
     298
@@ -804,7 +804,7 @@ And now for the RDF::
 
     >>> browser.open(portalURL + '/a-protocol-source/@@rdf')
     >>> graph = rdflib.Graph()
-    >>> graph.parse(data=browser.contents)
+    >>> graph.parse(data=browser.contents, format='xml')
     <Graph identifier=...(<class 'rdflib.graph.Graph'>)>
     >>> len(graph) > 9422
     True
@@ -969,7 +969,7 @@ And now for the RDF::
 
     >>> browser.open(portalURL + '/a-biomuta-source/@@rdf')
     >>> graph = rdflib.Graph()
-    >>> graph.parse(data=browser.contents)
+    >>> graph.parse(data=browser.contents, format='xml')
     <Graph identifier=...(<class 'rdflib.graph.Graph'>)>
     >>> len(graph)
     131187

@@ -17,7 +17,7 @@ from zope import schema
 from zope.component import getUtility
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 import contextlib
-import jsonlib
+import json
 from Bio import Entrez
 
 # Constants
@@ -165,4 +165,4 @@ class PublicationJsonGenerator(object):
         pubMedYears = self.queryPubmedYear(allPubmedIds, allPublications, pubMedYears)
 
         # C'est tout.
-        return jsonlib.write(pubMedYears)
+        return json.dumps(pubMedYears)

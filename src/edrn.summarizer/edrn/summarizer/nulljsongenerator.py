@@ -10,7 +10,7 @@ a statement graph, always produces an empty graph containing no statements whats
 from zope import schema
 from edrn.summarizer import _
 from .summarizergenerator import ISummarizerGenerator
-import jsonlib
+import json
 
 
 class INullJsonGenerator(ISummarizerGenerator):
@@ -30,4 +30,4 @@ class NullGraphGenerator(object):
 
     def generateJson(self):
         '''Generate an empty graph.'''
-        return jsonlib.write({})
+        return json.dumps({})

@@ -54,12 +54,12 @@ The answer will then be in the result element of the response element of the env
 
 ## 🔧 Developing
 
-**👉 Note:** Plone 5.2.2 (used here) is not compatible with any Python newer than 3.8. Stick with 3.8.
+**👉 Note:** Plone 5.2.9 (used here) is not compatible with any Python newer than 3.8. Stick with 3.8.
 
 Do the following:
 ```console
 python3.8 -m venv venv
-venv/bin/pip install --upgrade pip build wheel zc.buildout setuptools==42.0.2 numpy==1.19.3
+venv/bin/pip install --upgrade pip build wheel zc.buildout setuptools==42.0.2 numpy==1.23.4
 venv/bin/buildout -c dev.cfg
 ```
 

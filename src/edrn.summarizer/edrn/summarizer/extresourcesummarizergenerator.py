@@ -16,7 +16,7 @@ from .utils import validateAccessibleURL
 from zope import schema
 from zope.component import queryUtility
 from plone.i18n.normalizer.interfaces import IIDNormalizer
-import jsonlib, re
+import json, re
 
 _typeURI                                 = URIRef('http://www.w3.org/1999/02/22-rdf-syntax-ns#type')
 _bmRefResourceURI                        = URIRef('http://edrn.nci.nih.gov/rdf/rdfs/bmdb-1.0.0#referencesResource')
@@ -112,7 +112,7 @@ class ExtResourceJsonGenerator(object):
             raise RDFIngestException(_('This generator folder lacks one or both of its RDF source URLs.'))
         normalizerFunction = queryUtility(IIDNormalizer).normalize
         graph = ConjunctiveGraph()
-        graph.parse(URLInputSource(rdfDataSource))
+        graph.parse(URLInputSource(rdfDataSource), format='xml')
         statements = self._parseRDF(graph)
         
         OtherRef = {}
@@ -145,4 +145,4 @@ class ExtResourceJsonGenerator(object):
         jsondata = {"prot":ProtRef, "gene": GeneRef, "other":OtherRef}
 
         # C'est tout.
-        return jsonlib.write(jsondata)
+        return json.dumps(jsondata)
