@@ -80,9 +80,9 @@ class IBiomutaSummarizerGenerator(ISummarizerGenerator):
 # @yuliujpl: this is the "Biomuta JSON Generator", but it has a "generateGraph" mthod that produces RDF, not JSON
 # so … why?
 class BiomutaJsonGenerator(object):
-    # @yuliujpl: this doesn't use the DMCC's fatuous web service or produce committee info at all, so
+    # @yuliujpl: this doesn't use the DMCC's web service or produce committee info at all, so
     # why is this docstring here?
-    '''A graph generator that produces statements about EDRN's committees using the DMCC's fatuous web service.'''
+    '''A graph generator that produces statements about EDRN's committees using the DMCC's web service.'''
     def __init__(self, context):
         self.context = context
     def generateGraph(self):

@@ -9,7 +9,7 @@ EDRN RDF Service: utilities.
 from suds.client import Client
 import urllib, re
 
-# Why, why, why? DMCC, this is utterly pointless.
+# Why, why, why? This is utterly pointless.
 DEFAULT_VERIFICATION_NUM = '0' * 40960
 
 
@@ -38,7 +38,7 @@ _rowSep = re.compile(
 
 
 def splitDMCCRows(horribleString):
-    '''Split a horrible DMCC string into rows.  Returns an iterable.'''
+    '''Split a DMCC string into rows.  Returns an iterable.'''
     i = _rowSep.split(horribleString)
     i = i[1:]  # Skip first item, which is the empty string to the left of the first row separator
     return i

@@ -24,7 +24,7 @@ The remainder of this document tells how to set up and debug this software.
 
 ## 🐛 Manually Making SOAP Requests
 
-Okay, so you need to look at the awful, horribly-formatted raw data from the DMCC's ignominious SOAP service. Here's how you do that:
+Okay, so you need to look at the awful, horribly-formatted raw data from the DMCC's SOAP service. Here's how you do that:
 
 First, visit https://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx and pick one of the operations to exercise, say, "Disease". Click it and look under the SOAP 1.1 section. The first box is the request, so make a file with the request body text, i.e., with:
 

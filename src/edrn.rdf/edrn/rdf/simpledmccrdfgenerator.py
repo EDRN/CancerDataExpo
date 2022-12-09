@@ -3,7 +3,7 @@
 # RESERVED. U.S. Government Sponsorship acknowledged.
 
 '''Simple DMCC RDF Generator. This generator is used to describe the some of the more simple
-sets of data available at the DMCC by accessing their crummy web service.
+sets of data available at the DMCC by accessing their web service.
 '''
 
 from edrn.rdf import _
@@ -23,7 +23,7 @@ _logger = logging.getLogger(__name__)
 
 DEFAULT_VERIFICATION_NUM = '0' * 40960  # Why, why, why? DMCC, this makes no sense unless you copied a sample
 # SOAP app from a book or a website that did credit card number verification and decided to make that the basis
-# for all your SOAP apps and I bet that's exactly what you did.
+# for all your SOAP apps
 
 
 class ISimpleDMCCRDFGenerator(IRDFGenerator):
@@ -62,7 +62,7 @@ class ISimpleDMCCRDFGenerator(IRDFGenerator):
 
 
 class SimpleDMCCGraphGenerator(object):
-    '''A statement graph generator that produces statements based on the DMCC's crummy web service.'''
+    '''A statement graph generator that produces statements based on the DMCC's web service.'''
     def __init__(self, context):
         self.context = context
     def generateGraph(self):

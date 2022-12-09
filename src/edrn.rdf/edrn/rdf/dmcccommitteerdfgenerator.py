@@ -2,7 +2,7 @@
 # Copyright 2012 California Institute of Technology. ALL RIGHTS
 # RESERVED. U.S. Government Sponsorship acknowledged.
 
-'''DMCC Committee RDF Generator. An RDF generator that describes EDRN committees using the DMCC's maladroit web services.
+'''DMCC Committee RDF Generator. An RDF generator that describes EDRN committees using the DMCC's web services.
 '''
 
 from .rdfgenerator import IRDFGenerator
@@ -19,14 +19,14 @@ import rdflib, logging
 _logger = logging.getLogger(__name__)
 
 
-# Map from DMCC inane key to name of field that contains the corresponding predicate URI in the committees SOAP operation
+# Map from DMCC key to name of field that contains the corresponding predicate URI in the committees SOAP operation
 _committeePredicates = {
     'committee_name': 'titlePredicateURI',
     'committee_name_short': 'abbrevNamePredicateURI',
     'committee_type': 'committeeTypePredicateURI'
 }
 
-# Map from ludicrous DMCC role names to the field that contains the corresponding predicate URI in the membership SOAP operation
+# Map from DMCC role names to the field that contains the corresponding predicate URI in the membership SOAP operation
 _roleNamePredicates = {
     'Chair': 'chairPredicateURI',
     'Co-chair': 'coChairPredicateURI',
@@ -111,7 +111,7 @@ class IDMCCCommitteeRDFGenerator(IRDFGenerator):
 
 
 class DMCCCommitteeGraphGenerator(object):
-    '''A graph generator that produces statements about EDRN's committees using the DMCC's fatuous web service.'''
+    '''A graph generator that produces statements about EDRN's committees using the DMCC's web service.'''
     def __init__(self, context):
         self.context = context
     def generateGraph(self):

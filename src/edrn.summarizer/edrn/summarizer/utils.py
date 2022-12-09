@@ -8,7 +8,6 @@ EDRN Summarizer Service: utilities.
 
 import urllib.parse, re
 
-# Why, why, why? DMCC, you so stupid!
 # @yuliujpl: why is this even here?
 DEFAULT_VERIFICATION_NUM = '0' * 40960
 
@@ -38,7 +37,7 @@ _rowSep = re.compile(r'<recordNumber>[0-9]+</recordNumber><numberOfRecords>[0-9]
 
 # @yuliujpl: and this?
 def splitDMCCRows(horribleString):
-    '''Split a horrible DMCC string into rows.  Returns an iterable.'''
+    '''Split a DMCC string into rows.  Returns an iterable.'''
     i = _rowSep.split(horribleString)
     i = i[1:] # Skip first item, which is the empty string to the left of the first row separator
     return i

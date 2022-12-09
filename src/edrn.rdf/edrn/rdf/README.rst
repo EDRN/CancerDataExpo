@@ -195,7 +195,7 @@ Simple DMCC RDF Generator
 -------------------------
 
 The Simple DMCC RDF Generator uses straightforward mappings of the DMCC's
-terrible web service output and into RDF statements.  They can be created
+web service output and into RDF statements.  They can be created
 anywhere:
 
     >>> browser.open(portalURL)
@@ -243,7 +243,7 @@ Handlers to the Simple DMCC RDF Generator.  There are a few kinds:
 • Multi Literal Predicate Handlers map an awkward DMCC key that contains
   values separated by commas to multiple statements, one object per
   comma-separated value.
-• Various specialized handlers for DMCC's other cumbersome cases.
+• Various specialized handlers for DMCC's other cases.
 
 Note that predicate handlers must be added to Simple DMCC RDF Generators; they
 can't be added elsewhere::
@@ -280,7 +280,7 @@ For organs, we need only to use the Literal Predicate Handler::
     'http://purl.org/dc/terms/title'
 
 That takes care of mapping <Title> to http://purl.org/dc/terms/title.  Now for
-the <Description> key in the blundering DMCC output::
+the <Description> key in the DMCC output::
 
     >>> browser.open(portalURL + '/organs')
     >>> browser.getLink(id='edrn-rdf-literalpredicatehandler').click()
@@ -588,7 +588,7 @@ Let's dive right in.
 Generating RDF for Committees
 -----------------------------
 
-Committees require input from multiple SOAP API calls into the DMCC's ungainly
+Committees require input from multiple SOAP API calls into the DMCC's
 web service.  They may be created anywhere::
 
     >>> browser.open(portalURL)

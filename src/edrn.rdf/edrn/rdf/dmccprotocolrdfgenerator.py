@@ -2,7 +2,7 @@
 # Copyright 2012–2021 California Institute of Technology. ALL RIGHTS
 # RESERVED. U.S. Government Sponsorship acknowledged.
 
-'''DMCC Protocol RDF Generator. An RDF generator that describes EDRN protocols using the DMCC's bungling web services.
+'''DMCC Protocol RDF Generator. An RDF generator that describes EDRN protocols using the DMCC's web services.
 '''
 
 from edrn.rdf import _
@@ -562,7 +562,7 @@ class Relationship(_Identified):
 
 
 class DMCCProtocolGraphGenerator(object):
-    '''A graph generator that produces statements about EDRN's protocols using the DMCC's ludicrous web service.'''
+    '''A graph generator that produces statements about EDRN's protocols using the DMCC's web service.'''
     def __init__(self, context):
         self.context = context
     @property
