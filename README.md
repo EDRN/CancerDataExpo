@@ -24,7 +24,7 @@ The remainder of this document tells how to set up and debug this software.
 
 ## 🐛 Manually Making SOAP Requests
 
-Okay, so you need to look at the awful, horribly-formatted raw data from the DMCC's SOAP service. Here's how you do that:
+Okay, so you need to look at the bizarelly formatted raw data from the DMCC's SOAP service. Here's how you do that:
 
 First, visit https://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx and pick one of the operations to exercise, say, "Disease". Click it and look under the SOAP 1.1 section. The first box is the request, so make a file with the request body text, i.e., with:
 
@@ -39,7 +39,7 @@ First, visit https://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx and pick o
 </soap:Envelope>
 ```
 
-Note that you replace "string" with "0". Don't ask why—it's dumb 🙄. Save that as `/tmp/req.xml`. Next note that there's a `SOAPAction` header, so we need to duplicate that. So, run this command:
+Note that you replace "string" with "0". Don't ask why 🙄. Save that as `/tmp/req.xml`. Next note that there's a `SOAPAction` header, so we need to duplicate that. So, run this command:
 
 ```console
 curl --http1.1 --verbose --request POST \
