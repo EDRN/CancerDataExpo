@@ -532,6 +532,7 @@ class Specifics(_Identified):
     def __getattr__(self, key):
         return self.attributes.get(key, None)
 
+
 _relationshipsMap = {
     'contributes specimens to': 'contributesSpecimensURI',
     'is a pilot for':           'isAPilotForURI',

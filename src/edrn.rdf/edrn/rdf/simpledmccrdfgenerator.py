@@ -106,5 +106,3 @@ class SimpleDMCCGraphGenerator(object):
                 ', '.join(unusedSlots))
         _logger.info('And the used slots are %s', ', '.join(usedSlots))
         return graph
-
-                        
