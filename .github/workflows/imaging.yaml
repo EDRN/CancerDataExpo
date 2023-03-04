@@ -54,7 +54,8 @@ jobs:
                 with:
                     context: .
                     file: Dockerfile
-                    platforms: linux/amd64,linux/arm64/v8
+                    # Cannot build for ARM becuase Plone base image doesn't support it
+                    platforms: linux/amd64
                     push: true
                     tags: ${{secrets.DOCKERHUB_USERNAME}}/cancerdataexpo:latest
 
