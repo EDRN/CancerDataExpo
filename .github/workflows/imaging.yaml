@@ -15,7 +15,7 @@ name: EDRN Cancer Data Expo Imaging
 on:
     push:
         branches:
-            -   main
+            -   master
         paths:
             -   'src/**'
             -   'etc/**'
