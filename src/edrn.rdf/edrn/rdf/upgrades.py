@@ -4,8 +4,11 @@
 
 from .setuphandlers import publish
 from edrn.rdf import DEFAULT_PROFILE
-from plone.dexterity.utils import createContentInContainer
 from edrn.rdf.labcascollectionrdfgenerator import ILabCASCollectionRDFGenerator
+from plone.dexterity.utils import createContentInContainer
+from z3c.relationfield import RelationValue
+from zope.app.intid.interfaces import IIntIds
+from zope.component import getUtility
 import plone.api
 
 
@@ -56,3 +59,33 @@ def upgrade5to6(setupTool):
     for brain in catalog(object_provides=ILabCASCollectionRDFGenerator.__identifier__):
         obj = brain.getObject()
         obj.labcasSolrURL = 'https://edrn-labcas.jpl.nasa.gov/data-access-api'
+
+
+def upgrade6to7(setup_tool):
+    setup_tool.runImportStepFromProfile(DEFAULT_PROFILE, 'typeinfo')
+    portal = plone.api.portal.get()
+    if 'rdf-generators' in list(portal.keys()):
+        rdf_generators = portal['rdf-generators']
+        generators = list(rdf_generators.keys())
+        if 'member-group-generator' not in generators:
+            generator = createContentInContainer(
+                rdf_generators,
+                'edrn.rdf.membergrouprdfgenerator',
+                title='Member Group Generator',
+                description='Generates descriptions of groups of members',
+                web_service_url='https://www.compass.fhcrc.org/edrn_ws/ws_newcompass.asmx?WSDL'
+            )
+            publish(generator, plone.api.portal.get_tool('portal_workflow'))
+            if 'rdf-data' in list(portal.keys()):
+                rdf_sources = portal['rdf-data']
+                sources = list(rdf_sources.keys())
+                if 'member-groups' not in sources:
+                    source = createContentInContainer(
+                        rdf_sources,
+                        'edrn.rdf.rdfsource',
+                        title='Member Groups',
+                        description='RDF data for groups of EDRN member sites',
+                        generator=RelationValue(getUtility(IIntIds).getId(generator)),
+                        active=True
+                    )
+                publish(source, plone.api.portal.get_tool('portal_workflow'))

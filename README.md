@@ -157,7 +157,6 @@ Add a Manager user (not through the web, like above):
 
     docker container run --volume ${EDRN_CANCERDATAEXPO_DATA}/blobstorage:/data/blobstorage --tty --rm --interactive --network cancerdataexpo_frontsidebus --env ZEO_ADDRESS=db:8080 --env ZEO_SHARED_BLOB_DIR=on cancerdataexpo:latest adduser USERNAME PASSWORD
 
-
 Get a shell:
 
     docker container run --volume ${EDRN_CANCERDATAEXPO_DATA}/blobstorage:/data/blobstorage --tty --rm --interactive --network cancerdataexpo_frontsidebus --entrypoint /bin/bash cancerdataexpo:latest

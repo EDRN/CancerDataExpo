@@ -15,4 +15,5 @@ RESERVED. U.S. Government Sponsorship acknowledged.
     <object name='edrn.rdf.referencepredicatehandler' meta_type='Dexterity FTI' />
     <object name='edrn.rdf.biomutardfgenerator' meta_type='Dexterity FTI' />
     <object name='edrn.rdf.labcascollectionrdfgenerator' meta_type='Dexterity FTI' />
+    <object name='edrn.rdf.membergrouprdfgenerator' meta_type='Dexterity FTI' />
 </object>

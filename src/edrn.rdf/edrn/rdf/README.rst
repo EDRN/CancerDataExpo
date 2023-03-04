@@ -1130,3 +1130,26 @@ No matter how many more times we generate RDF::
 
 Whew.
 
+
+Member Groups
+=============
+
+Ugh. Fine::
+
+    >>> from z3c.relationfield import RelationValue
+    >>> from zope.app.intid.interfaces import IIntIds
+    >>> from zope.component import getUtility
+    >>> intIDs = getUtility(IIntIds)
+    >>> import transaction
+    >>> browser.open(portalURL)
+    >>> l = browser.getLink(id='edrn-rdf-membergrouprdfgenerator')
+    >>> l.url.endswith('++add++edrn.rdf.membergrouprdfgenerator')
+    True
+    >>> l.click()
+    >>> browser.getControl(name='form.widgets.title').value = 'Member Group Generator'
+    >>> browser.getControl(name='form.widgets.description').value = 'A generator for testing.'
+    >>> browser.getControl(name='form.widgets.web_service_url').value = 'testscheme://localhost/ws_newcompass.asmx?WSDL'
+    >>> browser.getControl(name='form.buttons.save').click()
+    >>> browser.open(portalURL)
+    >>> 'member-group-generator' in portal.keys()
+    True

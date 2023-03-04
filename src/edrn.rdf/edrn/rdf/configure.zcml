@@ -86,6 +86,11 @@ RESERVED. U.S. Government Sponsorship acknowledged.
         provides='.interfaces.IGraphGenerator'
         for='.labcascollectionrdfgenerator.ILabCASCollectionRDFGenerator'
     />
+    <adapter
+        factory='.membergrouprdfgenerator.MemberGroupGraphGenerator'
+        provides='.interfaces.IGraphGenerator'
+        for='.membergrouprdfgenerator.IMemberGroupRDFGenerator'
+    />
 
     <!-- Adapters for assertions of subjects via predicates -->
     <adapter
