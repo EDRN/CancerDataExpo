@@ -16,4 +16,3 @@ RUN : &&\
     buildout -c site.cfg &&\
     find /plone -not -user plone -exec chown plone:plone {} \+ &&\
     :
-
