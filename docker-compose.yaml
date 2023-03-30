@@ -4,7 +4,7 @@
 ---
 services:
     appserver:
-        image: ${EDRN_IMAGE_OWNER-nutjob4life/}cancerdataexpo:${EDRN_CANCERDATAEXPO_VERSION:-latest}
+        image: ${EDRN_IMAGE_OWNER-edrndocker/}cancerdataexpo:${EDRN_CANCERDATAEXPO_VERSION:-latest}
         volumes:
             -
                 type: bind
@@ -40,7 +40,7 @@ services:
             org.label-schema.name: CancerDataExpo Application Server
             org.label-schema.description: Zope appserver running the exposition for cancer data.
     db:
-        image: ${EDRN_IMAGE_OWNER-nutjob4life/}cancerdataexpo:${EDRN_CANCERDATAEXPO_VERSION:-latest}
+        image: ${EDRN_IMAGE_OWNER-edrndocker/}cancerdataexpo:${EDRN_CANCERDATAEXPO_VERSION:-latest}
         command: zeo
         volumes:
             -

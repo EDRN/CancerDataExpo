@@ -73,7 +73,7 @@ Here are the environment variables you'll need to set (substituting values betwe
 -   `EDRN_CANCERDATAEXPO_DATA` — set to a path to contain blobstorage, filestorage, and logs.
 -   `EDRN_CANCERDATAEXPO_PORT` — set to a free port number
 -   `EDRN_CANCERDATAEXPO_VERSION` — set to a version number or `latest`
--   `EDRN_IMAGE_OWNER` — set to `nutjob4life` or leave it blank to use your local Docker images
+-   `EDRN_IMAGE_OWNER` — set to `edrndocker` or leave it blank to use your local Docker images
 
 
 ### 🧱 Building the Image
@@ -85,8 +85,8 @@ Just run:
 To publish it:
 
     docker login
-    docker image tag cancerdataexpo:latest nutjob4life/cancerdataexpo:latest
-    docker image push nutjob4life/cancerdataexpo:latest
+    docker image tag cancerdataexpo:latest edrndocker/cancerdataexpo:latest
+    docker image push edrndocker/cancerdataexpo:latest
 
 
 ### 🏃‍♀️ Running the CancerDataExpo
