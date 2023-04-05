@@ -89,3 +89,26 @@ def upgrade6to7(setup_tool):
                         active=True
                     )
                 publish(source, plone.api.portal.get_tool('portal_workflow'))
+
+
+def upgrade7to8(setup_tool):
+    setup_tool.runImportStepFromProfile(DEFAULT_PROFILE, 'typeinfo')
+    portal = plone.api.portal.get()
+    try:
+        generator = portal.unrestrictedTraverse('rdf-generators/person-generator')
+        try:
+            generator.manage_delObject('email')
+        except AttributeError:
+            # no email handler found, so no worries
+            pass
+        handler = createContentInContainer(
+            generator,
+            'edrn.rdf.emailpredicatehandler',
+            title='Email',
+            description='Email predicate handler',
+            predicateURI='http://xmlns.com/foaf/0.1/mbox'
+        )
+        publish(handler, plone.api.portal.get_tool('portal_workflow'))
+    except KeyError:
+        # no person handler found, so nothing to do
+        pass

@@ -36,6 +36,8 @@ _requirements = [
     'z3c.relationfield',
     'suds2',
     'zope.app.intid',
+    'email-validator~=1.3.1',
+    'rfc3986-validator~=0.1.1',
 ]
 _extras = {
     'test': ['plone.app.testing', 'rdfextras'],

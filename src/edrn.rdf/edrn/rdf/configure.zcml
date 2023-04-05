@@ -108,6 +108,11 @@ RESERVED. U.S. Government Sponsorship acknowledged.
         provides='.interfaces.IAsserter'
         for='.referencepredicatehandler.IReferencePredicateHandler'
     />
+    <adapter
+        factory='.emailpredicatehandler.EmailAsserter'
+        provides='.interfaces.IAsserter'
+        for='.emailpredicatehandler.IEmailPredicateHandler'
+    />
 
     <!-- Adapters for updating RDF -->
     <adapter

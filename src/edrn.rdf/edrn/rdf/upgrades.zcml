@@ -49,5 +49,14 @@ RESERVED. U.S. Government Sponsorship acknowledged.
         handler='edrn.rdf.upgrades.upgrade6to7'
         sortkey='1'
     />
+    <genericsetup:upgradeStep
+        source='7'
+        destination='8'
+        title='Upgrade 7 to 8'
+        description='Add Email Predicate handler'
+        profile='edrn.rdf:default'
+        handler='edrn.rdf.upgrades.upgrade7to8'
+        sortkey='1'
+    />
 
 </configure>

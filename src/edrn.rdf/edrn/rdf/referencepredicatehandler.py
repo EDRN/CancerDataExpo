@@ -5,8 +5,11 @@
 from . import _
 from .predicatehandler import ISimplePredicateHandler
 from Acquisition import aq_inner
+from rfc3986_validator import validate_rfc3986
 from zope import schema
-import rdflib
+import rdflib, logging
+
+_logger = logging.getLogger(__name__)
 
 
 class IReferencePredicateHandler(ISimplePredicateHandler):
@@ -29,5 +32,12 @@ class ReferenceAsserter(object):
             i = i.strip()
             if not i: continue
             target = context.uriPrefix + i
-            characterizations.append((rdflib.URIRef(context.predicateURI), rdflib.URIRef(target)))
+            if validate_rfc3986(target):
+                characterizations.append((rdflib.URIRef(context.predicateURI), rdflib.URIRef(target)))
+            else:
+                _logger.warn(
+                    'Encountered an invalid URI «%s» for %s which will not be put into RDF', target,
+                    self.context.title
+                )
+
         return characterizations
