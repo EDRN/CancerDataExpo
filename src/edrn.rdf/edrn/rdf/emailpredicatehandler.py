@@ -29,7 +29,7 @@ class EmailAsserter(object):
             try:
                 validation = validate_email(i)
             except EmailNotValidError as ex:
-                _logger.warn('Encountered an invalid email address «%s» which will not be put into RDF: %s', i, ex)
+                _logger.warning('Encountered an invalid email address «%s» which will not be put into RDF: %s', i, ex)
                 continue
             target = 'mailto:' + validation.email
             characterizations.append((rdflib.URIRef(context.predicateURI), rdflib.URIRef(target)))

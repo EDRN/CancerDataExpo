@@ -35,7 +35,7 @@ class ReferenceAsserter(object):
             if validate_rfc3986(target):
                 characterizations.append((rdflib.URIRef(context.predicateURI), rdflib.URIRef(target)))
             else:
-                _logger.warn(
+                _logger.warning(
                     'Encountered an invalid URI «%s» for %s which will not be put into RDF', target,
                     self.context.title
                 )
