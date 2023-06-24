@@ -3,13 +3,13 @@
 # RESERVED. U.S. Government Sponsorship acknowledged.
 
 from .setuphandlers import publish
-from edrn.rdf import DEFAULT_PROFILE
+from edrn.rdf import DEFAULT_PROFILE, PACKAGE_NAME
 from edrn.rdf.labcascollectionrdfgenerator import ILabCASCollectionRDFGenerator
 from plone.dexterity.utils import createContentInContainer
 from z3c.relationfield import RelationValue
 from zope.app.intid.interfaces import IIntIds
 from zope.component import getUtility
-import plone.api
+import plone.api, logging
 
 
 def nullUpgradeStep(setupTool):
@@ -112,3 +112,10 @@ def upgrade7to8(setup_tool):
     except KeyError:
         # no person handler found, so nothing to do
         pass
+
+
+def upgrade8to9(setup_tool, logger=None):
+    if logger is None:
+        logger = logging.getLogger(PACKAGE_NAME)
+    setup_tool.runImportStepFromProfile(DEFAULT_PROFILE, 'plone.app.registry')
+    logging.info('Loaded registry')

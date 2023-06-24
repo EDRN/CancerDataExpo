@@ -58,5 +58,15 @@ RESERVED. U.S. Government Sponsorship acknowledged.
         handler='edrn.rdf.upgrades.upgrade7to8'
         sortkey='1'
     />
+    <genericsetup:upgradeStep
+        source='8'
+        destination='9'
+        title='Upgrade 8 to 9'
+        description='Add email notification settings'
+        profile='edrn.rdf:default'
+        handler='edrn.rdf.upgrades.upgrade8to9'
+        sortkey='1'
+    />
+
 
 </configure>
