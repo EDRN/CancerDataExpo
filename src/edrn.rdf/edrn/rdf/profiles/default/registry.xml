@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<registry>
+    <record name='edrn.rdf.notification.email'>
+        <field type='plone.registry.field.TextLine'>
+            <required>False</required>
+            <title>Notification Email Addresses (comma separated)</title>
+        </field>
+        <value>sean.kelly@jpl.nasa.gov</value>
+    </record>
+</registry>
