@@ -3,24 +3,16 @@
 Copyright 2012 California Institute of Technology. ALL RIGHTS
 RESERVED. U.S. Government Sponsorship acknowledged.
 -->
-<object name='edrn.rdf.simpledmccrdfgenerator' meta_type='Dexterity FTI' i18n:domain='edrn.rdf'
+<object name='edrn.rdf.multipipepredicatehandler' meta_type='Dexterity FTI' i18n:domain='edrn.rdf'
     xmlns:i18n='http://xml.zope.org/namespaces/i18n'>
-    <property name='title' i18n:translate=''>Simple DMCC RDF Generator</property>
-    <property name='description' i18n:translate=''>An RDF generator that describes some of the more simple
-sets of data available at the DMCC by accessing their crummy web service.</property>
-    <property name='content_icon'>++resource++edrn.rdf/simpledmccrdfgenerator.png</property>
+    <property name='title' i18n:translate=''>Multi-Pipe Predicate Handler</property>
+    <property name='description' i18n:translate=''>A handler for DMCC web services that maps tokenized |-separated keys to multiple literal RDF values.</property>
     <property name='allow_discussion'>False</property>
-    <property name='global_allow'>True</property>
+    <property name='global_allow'>False</property>
     <property name='filter_content_types'>True</property>
-    <property name='allowed_content_types'>
-        <element value='edrn.rdf.literalpredicatehandler' />
-        <element value='edrn.rdf.multiliteralpredicatehandler' />
-        <element value='edrn.rdf.multipipepredicatehandler' />
-        <element value='edrn.rdf.referencepredicatehandler' />
-        <element value='edrn.rdf.emailpredicatehandler' />
-    </property>
-    <property name='schema'>edrn.rdf.simpledmccrdfgenerator.ISimpleDMCCRDFGenerator</property>
-    <property name='klass'>plone.dexterity.content.Container</property>
+    <property name='allowed_content_types' />
+    <property name='schema'>edrn.rdf.multipipepredicatehandler.IMultiPipePredicateHandler</property>
+    <property name='klass'>plone.dexterity.content.Item</property>
     <property name='add_permission'>cmf.AddPortalContent</property>
     <property name='behaviors'>
         <element value='plone.app.content.interfaces.INameFromTitle' />

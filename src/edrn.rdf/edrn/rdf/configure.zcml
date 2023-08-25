@@ -104,6 +104,11 @@ RESERVED. U.S. Government Sponsorship acknowledged.
         for='.multiliteralpredicatehandler.IMultiLiteralPredicateHandler'
     />
     <adapter
+        factory='.multipipepredicatehandler.MultiPipeAsserter'
+        provides='.interfaces.IAsserter'
+        for='.multipipepredicatehandler.IMultiPipePredicateHandler'
+    />
+    <adapter
         factory='.referencepredicatehandler.ReferenceAsserter'
         provides='.interfaces.IAsserter'
         for='.referencepredicatehandler.IReferencePredicateHandler'

@@ -119,3 +119,44 @@ def upgrade8to9(setup_tool, logger=None):
         logger = logging.getLogger(PACKAGE_NAME)
     setup_tool.runImportStepFromProfile(DEFAULT_PROFILE, 'plone.app.registry')
     logging.info('Loaded registry')
+
+
+def upgrade9to10(setupTool, logger=None):
+    if logger is None:
+        logger = logging.getLogger(PACKAGE_NAME)
+    setupTool.runImportStepFromProfile(DEFAULT_PROFILE, 'typeinfo')
+    portal = plone.api.portal.get()
+    try:
+        generator = portal.unrestrictedTraverse('rdf-generators/person-generator')
+
+        try:
+            generator.manage_delObject('interestnamelist')
+        except AttributeError:
+            # no email handler found, so no worries
+            pass
+        handler = createContentInContainer(
+            generator,
+            'edrn.rdf.multipipepredicatehandler',
+            title='InterestNameList',
+            description='A list of names of intereest',
+            predicateURI='http://edrn.nci.nih.gov/rdf/schema.rdf#interestName'
+        )
+        publish(handler, plone.api.portal.get_tool('portal_workflow'))
+
+        try:
+            generator.manage_delObject('interestdesclist')
+        except AttributeError:
+            # no email handler found, so no worries
+            pass
+        handler = createContentInContainer(
+            generator,
+            'edrn.rdf.multipipepredicatehandler',
+            title='InterestDescList',
+            description='A list of descriptions of intereest',
+            predicateURI='http://edrn.nci.nih.gov/rdf/schema.rdf#interestDescription'
+        )
+        publish(handler, plone.api.portal.get_tool('portal_workflow'))
+
+    except KeyError:
+        # no person handler found, so nothing to do
+        pass
