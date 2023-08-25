@@ -37,7 +37,6 @@ class TestSchemeHandler(urllib.request.BaseHandler):
                     200
                 )
             else:
-                import pdb;pdb.set_trace()
                 raise urllib.error.URLError('Not found')
         except Exception:
             raise urllib.error.URLError('Not found')
