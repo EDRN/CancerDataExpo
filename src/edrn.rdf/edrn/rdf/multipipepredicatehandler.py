@@ -19,5 +19,9 @@ class MultiPipeAsserter(object):
         self.context = context
     def characterize(self, obj):
         context = aq_inner(self.context)
-        rc = [(rdflib.URIRef(context.predicateURI), rdflib.Literal(i.strip())) for i in obj.split('|')]
+        rc, count = [], 0
+        for i in obj.split('|'):
+            literal = rdflib.Literal(f'{count:04} {i.strip()}')
+            rc.append((rdflib.URIRef(context.predicateURI), literal))
+            count += 1
         return rc
