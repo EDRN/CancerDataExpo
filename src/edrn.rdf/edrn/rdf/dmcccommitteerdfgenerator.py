@@ -50,7 +50,7 @@ class IDMCCCommitteeRDFGenerator(IRDFGenerator):
     )
     membershipOperation = schema.TextLine(
         title=_('Membership Operation Name'),
-        description=_('Name of the SOAP operation to invoke in order to retrieve information about whose in what committees.'),
+        description=_("Name of the SOAP operation to invoke in order to retrieve information about who's in what committees."),
         required=True,
     )
     verificationNum = schema.TextLine(
@@ -154,11 +154,20 @@ class DMCCCommitteeGraphGenerator(object):
                     if value not in _roleNamePredicates: continue
                     predicateURI = URIRef(getattr(context, _roleNamePredicates[value]))
             if subjectURI and predicateURI and obj:
+                if obj == URIRef('http://edrn.nci.nih.gov/data/registered-person/2313'):
+                    _logger.warning('🎅 Christos! %s, %s, %s', subjectURI, predicateURI, obj)
                 graph.add((subjectURI, predicateURI, obj))
 
         if unusedSlots:
-            _logger.warning('For %s the following slots were unused: %s', '/'.join(context.getPhysicalPath()),
-                ', '.join(unusedSlots))
+            _logger.warning(
+                'For %s the following slots were unused: %s', '/'.join(context.getPhysicalPath()),
+                ', '.join(unusedSlots)
+            )
+
+        try:
+            graph.serialize(destination='/tmp/committees.rdf', format='pretty-xml')
+        except:
+            pass
 
         # C'est tout.
         return graph
