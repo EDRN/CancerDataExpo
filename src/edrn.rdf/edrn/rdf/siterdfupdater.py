@@ -19,6 +19,7 @@ class SiteRDFUpdater(BrowserView):
     '''A "view" that instructs all RDF sources to generate fresh RDF.'''
     def render(self):
         return self.index()
+
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
         self.request.set('disable_border', True)

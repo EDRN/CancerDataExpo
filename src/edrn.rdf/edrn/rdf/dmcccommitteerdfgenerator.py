@@ -144,15 +144,23 @@ class DMCCCommitteeGraphGenerator(object):
         horribleMembers = members(verificationNum)
         for row in splitDMCCRows(horribleMembers):
             subjectURI = predicateURI = obj = None
+            gotChristos = False
             for key, value in parseTokens(row):
                 if not value: continue
                 if key == 'committee_identifier':
                     subjectURI = URIRef(context.uriPrefix + value)
                 elif key == 'Registered_Person_Identifer':
+                    if value == '2313':
+                        gotChristos = True
                     obj = URIRef(context.personPrefix + value)
                 elif key == 'roleName':
-                    if value not in _roleNamePredicates: continue
+                    if value not in _roleNamePredicates:
+                        _logger.warning('🤔 Unknown role "%s"; ignoring this member', value)
+                        continue
                     predicateURI = URIRef(getattr(context, _roleNamePredicates[value]))
+            if gotChristos:
+                _logger.warning('🎅 Got Christos for subject %s, role %s, obj %s', subjectURI, predicateURI, obj)
+                gotChristos = False
             if subjectURI and predicateURI and obj:
                 if obj == URIRef('http://edrn.nci.nih.gov/data/registered-person/2313'):
                     _logger.warning('🎅 Christos! %s, %s, %s', subjectURI, predicateURI, obj)
