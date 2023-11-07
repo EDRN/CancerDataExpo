@@ -31,7 +31,9 @@ _roleNamePredicates = {
     'Chair': 'chairPredicateURI',
     'Co-chair': 'coChairPredicateURI',
     'Consultant': 'consultantPredicateURI',
-    'Member': 'memberPredicateURI'
+    'Member': 'memberPredicateURI',
+    'Project Scientist': 'memberPredicateURI',
+    'Program Officer': 'memberPredicateURI',
 }
 
 
