@@ -1,5 +1,5 @@
 # encoding: utf-8
-# Copyright 2013–2017 California Institute of Technology. ALL RIGHTS
+# Copyright 2013–2023 California Institute of Technology. ALL RIGHTS
 # RESERVED. U.S. Government Sponsorship acknowledged.
 
 from .setuphandlers import publish
@@ -160,3 +160,9 @@ def upgrade9to10(setupTool, logger=None):
     except KeyError:
         # no person handler found, so nothing to do
         pass
+
+
+def upgrade10to11(setupTool, logger=None):
+    if logger is None:
+        logger = logging.getLogger(PACKAGE_NAME)
+    setupTool.runImportStepFromProfile(DEFAULT_PROFILE, 'typeinfo')

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!--
-Copyright 2013 California Institute of Technology. ALL RIGHTS
+Copyright 2013–2023 California Institute of Technology. ALL RIGHTS
 RESERVED. U.S. Government Sponsorship acknowledged.
 -->
 <configure xmlns='http://namespaces.zope.org/zope' xmlns:genericsetup='http://namespaces.zope.org/genericsetup'>
@@ -74,6 +74,15 @@ RESERVED. U.S. Government Sponsorship acknowledged.
         description='Add new edrn.rdf.multipipepredicatehandler'
         profile='edrn.rdf:default'
         handler='edrn.rdf.upgrades.upgrade9to10'
+        sortkey='1'
+    />
+    <genericsetup:upgradeStep
+        source='10'
+        destination='11'
+        title='Upgrade 10 to 11'
+        description='Add project scientist and program officer support to committees'
+        profile='edrn.rdf:default'
+        handler='edrn.rdf.upgrades.upgrade10to11'
         sortkey='1'
     />
 

@@ -1,5 +1,5 @@
 # encoding: utf-8
-# Copyright 2012 California Institute of Technology. ALL RIGHTS
+# Copyright 2012–2023 California Institute of Technology. ALL RIGHTS
 # RESERVED. U.S. Government Sponsorship acknowledged.
 
 '''DMCC Committee RDF Generator. An RDF generator that describes EDRN committees using the DMCC's web services.
@@ -32,9 +32,10 @@ _roleNamePredicates = {
     'Co-chair': 'coChairPredicateURI',
     'Consultant': 'consultantPredicateURI',
     'Member': 'memberPredicateURI',
-    'Project Scientist': 'memberPredicateURI',
-    'Program Officer': 'memberPredicateURI',
+    'Project Scientist': 'projectScientistPredicateURI',
+    'Program Officer': 'programOfficerPredicateURI',
 }
+# We'll treat all other non-found roles as mere members
 
 
 class IDMCCCommitteeRDFGenerator(IRDFGenerator):
@@ -110,12 +111,25 @@ class IDMCCCommitteeRDFGenerator(IRDFGenerator):
         description=_('The Uniform Resource Identifier of the predicate that indicates members of committees.'),
         required=True,
     )
+    projectScientistPredicateURI = schema.TextLine(
+        title=_(u'Project Scientist Predicate URI'),
+        description=_(u'The Uniform Resource Identifier of the predicate that indicates the project scientist of the committee'),
+        required=True,
+        default='urn:edrn:rdf:predicates:project_scientist'
+    )
+    programOfficerPredicateURI = schema.TextLine(
+        title=_(u'Program Officer Predicate URI'),
+        description=_(u'The Uniform Resource Identifier of the predicate that indicates the program officer of the committee'),
+        required=True,
+        default='urn:edrn:rdf:predicates:program_officer'
+    )
 
 
 class DMCCCommitteeGraphGenerator(object):
     '''A graph generator that produces statements about EDRN's committees using the DMCC's web service.'''
     def __init__(self, context):
         self.context = context
+
     def generateGraph(self):
         graph = rdflib.Graph()
         context = aq_inner(self.context)
@@ -157,9 +171,11 @@ class DMCCCommitteeGraphGenerator(object):
                     obj = URIRef(context.personPrefix + value)
                 elif key == 'roleName':
                     if value not in _roleNamePredicates:
-                        _logger.warning('🤔 Unknown role "%s"; ignoring this member', value)
-                        continue
-                    predicateURI = URIRef(getattr(context, _roleNamePredicates[value]))
+                        _logger.warning('🤔 Unknown role "%s"; treating as plain member', value)
+                        predicate_name = 'memberPredicateURI'
+                    else:
+                        predicate_name = _roleNamePredicates[value]
+                    predicateURI = URIRef(getattr(context, predicate_name))
             if gotChristos:
                 _logger.warning('🎅 Got Christos for subject %s, role %s, obj %s', subjectURI, predicateURI, obj)
                 gotChristos = False
