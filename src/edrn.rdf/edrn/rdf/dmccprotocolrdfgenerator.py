@@ -12,7 +12,10 @@ from .utils import get_suds_client
 from .utils import parseTokens, validateAccessibleURL, DEFAULT_VERIFICATION_NUM, splitDMCCRows
 from rdflib.term import URIRef, Literal
 from zope import schema
-import rdflib
+import rdflib, logging
+
+
+_logger = logging.getLogger(__name__)
 
 _siteRoles = {
     '1':                  'Funding Source',
@@ -24,7 +27,7 @@ _siteRoles = {
     '7':                  'Analysis Lab',
     '8':                  'Statistical Services',
     '9':                  'Consultant',
-    '97':                 'Other, Specify',
+    '97':                 'Other',
 }
 
 _reportingStages = {
@@ -40,7 +43,7 @@ _reportingStages = {
     '10':                  'Publication Stage',
     '11':                  'Statistical Analysis Stage',
     '12':                  'Completed',
-    '97':                  'Other, specify',
+    '97':                  'Other',
 }
 
 _fieldsOfResearch = {
@@ -51,7 +54,7 @@ _fieldsOfResearch = {
     '5': 'Nanotechnology',
     '6': 'Metabolomics',
     '7': 'Hypermethylation',
-    '9': 'Other, Specify',
+    '9': 'Other',
 }
 
 
@@ -400,6 +403,7 @@ class Study(_Slotted):
             predicateURI = URIRef(getattr(context, attrName))
             graph.add((subjectURI, predicateURI, Literal(value)))
 
+
 _specificsPredicates = {
     'animalTraining': 'animalSubjectTrainingReceivedURI',
     'humanTraining': 'humanSubjectTrainingReceivedURI',
@@ -431,7 +435,6 @@ _miscSlots = {
     'Protocol_or_Project_Flag':             'projectFlagURI',
     'Protocol_Results_Outcome':             'outcomeURI',
     'Protocol_Results_Outcome_Secure_Site': 'secureOutcomeURI',
-    'Protocol_Type':                        'protocolTypeURI',
     'Sample_Size_Final':                    'finalSampleSizeURI',
     'Sample_Size_Planned':                  'plannedSampleSizeURI',
 }
@@ -496,7 +499,14 @@ class Protocol(_Slotted):
             value = value.strip()
             if value:
                 graph.add((subjectURI, predicateURI, URIRef(context.cancerTypeURIPrefix + value)))
+    def _addProtocolType(self, graph, context):
+        subjectURI = self.getSubjectURI(context)
+        kind = self.slots.get('Protocol_Type')
+        if not kind: return
+        kind = 'Other' if kind == 'Other specify' else kind
+        graph.add((subjectURI, URIRef(context.protocolTypeURI), Literal(kind)))
     def addToGraph(self, graph, specifics, context):
+        self._addProtocolType(graph, context)
         self._addInvolvedInvestigatorSites(graph, specifics, context)
         self._addOtherSites(graph, context)
         self._addPublications(graph, context)
@@ -538,7 +548,7 @@ _relationshipsMap = {
     'is a pilot for':           'isAPilotForURI',
     'obtains data from':        'obtainsDataFromURI',
     'obtains specimens from':   'obtainsSpecimensFromURI',
-    'Other, specify':           'hasOtherRelationshipURI',
+    'Other':                    'hasOtherRelationshipURI',
     'provides data to':         'providesDataToURI',
 }
 
@@ -586,6 +596,7 @@ class DMCCProtocolGraphGenerator(object):
                         objects[value] = obj
                 elif key == 'slot':
                     lastSlot = value
+                    _logger.warning('Slot = %s', lastSlot)
                 elif key == 'value':
                     if lastSlot is None:
                         raise ValueError('Value with no preceding slot in row "%r"' % row)
