@@ -85,6 +85,15 @@ RESERVED. U.S. Government Sponsorship acknowledged.
         handler='edrn.rdf.upgrades.upgrade10to11'
         sortkey='1'
     />
+    <genericsetup:upgradeStep
+        source='11'
+        destination='12'
+        title='Upgrade 11 to 12'
+        description='Add new URI predicate handler'
+        profile='edrn.rdf:default'
+        handler='edrn.rdf.upgrades.upgrade11to12'
+        sortkey='1'
+    />
 
 
 </configure>

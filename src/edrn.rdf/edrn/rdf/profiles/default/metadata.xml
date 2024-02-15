@@ -4,7 +4,7 @@ Copyright 2012–2023 California Institute of Technology. ALL RIGHTS
 RESERVED. U.S. Government Sponsorship acknowledged.
 -->
 <metadata>
-    <version>11</version>
+    <version>12</version>
     <description>EDRN RDF Service</description>
     <dependencies>
         <dependency>profile-plone.app.dexterity:default</dependency>

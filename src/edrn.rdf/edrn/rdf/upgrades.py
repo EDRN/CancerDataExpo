@@ -166,3 +166,24 @@ def upgrade10to11(setupTool, logger=None):
     if logger is None:
         logger = logging.getLogger(PACKAGE_NAME)
     setupTool.runImportStepFromProfile(DEFAULT_PROFILE, 'typeinfo')
+
+
+def upgrade11to12(setupTool, logger=None):
+    if logger is None:
+        logger = logging.getLogger(PACKAGE_NAME)
+    setupTool.runImportStepFromProfile(DEFAULT_PROFILE, 'typeinfo')
+    portal = plone.api.portal.get()
+    generator = portal.unrestrictedTraverse('rdf-generators/person-generator')
+    try:
+        generator.manage_delObject('Photo_file_name')
+    except AttributeError:
+        # no photo file handler found, so no worries
+        pass
+    handler = createContentInContainer(
+        generator,
+        'edrn.rdf.uripredicatehandler',
+        title='Photo_file_name',
+        description='A URL to a photograph of the person',
+        predicateURI='http://xmlns.com/foaf/0.1/img'
+    )
+    publish(handler, plone.api.portal.get_tool('portal_workflow'))

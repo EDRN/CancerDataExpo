@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--
-Copyright 2008—2012 California Institute of Technology. ALL RIGHTS
+Copyright 2008—2024 California Institute of Technology. ALL RIGHTS
 RESERVED. U.S. Government Sponsorship acknowledged.
 -->
 <object name='portal_types' meta_type='Plone Types Tool'>
@@ -11,6 +11,7 @@ RESERVED. U.S. Government Sponsorship acknowledged.
     <object name='edrn.rdf.dmcccommitteerdfgenerator' meta_type='Dexterity FTI' />
     <object name='edrn.rdf.dmccprotocolrdfgenerator' meta_type='Dexterity FTI' />
     <object name='edrn.rdf.literalpredicatehandler' meta_type='Dexterity FTI' />
+    <object name='edrn.rdf.uripredicatehandler' meta_type='Dexterity FTI' />
     <object name='edrn.rdf.multiliteralpredicatehandler' meta_type='Dexterity FTI' />
     <object name='edrn.rdf.multipipepredicatehandler' meta_type='Dexterity FTI' />
     <object name='edrn.rdf.referencepredicatehandler' meta_type='Dexterity FTI' />

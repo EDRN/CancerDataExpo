@@ -99,6 +99,11 @@ RESERVED. U.S. Government Sponsorship acknowledged.
         for='.literalpredicatehandler.ILiteralPredicateHandler'
     />
     <adapter
+        factory='.uripredicatehandler.URIAsserter'
+        provides='.interfaces.IAsserter'
+        for='.uripredicatehandler.IURIPredicateHandler'
+    />
+    <adapter
         factory='.multiliteralpredicatehandler.MultiLiteralAsserter'
         provides='.interfaces.IAsserter'
         for='.multiliteralpredicatehandler.IMultiLiteralPredicateHandler'
