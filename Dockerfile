@@ -3,7 +3,7 @@
 #
 # Defines the image for the CancerDataExpo
 
-FROM plone:5.2.9
+FROM plone:5.2.14
 
 ENV numpy=1.23.4
 
