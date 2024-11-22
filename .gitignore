@@ -1,3 +1,4 @@
+.eggs
 *.egg-info
 *.log
 *.py[co]
@@ -18,3 +19,5 @@ parts
 var
 ops.cfg
 venv
+AccessControl-4.4/
+zope.container-4.5.0/

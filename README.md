@@ -60,6 +60,10 @@ Do the following:
 ```console
 python3.8 -m venv venv
 venv/bin/pip install --upgrade pip build wheel zc.buildout setuptools==42.0.2 numpy==1.23.4
+cd AccessControl-4.4  # Specially modified setup.py here
+../venv/bin/python setup.py install
+cd ..
+venv/bin/pip install RestrictedPython==5.4  # Override one from AccessControl-4.4
 venv/bin/buildout -c dev.cfg
 ```
 
