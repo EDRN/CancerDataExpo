@@ -2,8 +2,12 @@
 # ==========
 #
 # Defines the image for the CancerDataExpo
+#
+# Going beyond 5.2.9 seems to break things
+#
+# We should dump Plone/Zope and switch to Django
 
-FROM plone:5.2.14
+FROM plone:5.2.9
 
 ENV numpy=1.23.4
 
