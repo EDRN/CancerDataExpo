@@ -584,6 +584,10 @@ class DMCCProtocolGraphGenerator(object):
         return get_suds_client(self.context.webServiceURL, self.context)
     def getSlottedItems(self, operation, kind):
         function = getattr(self.client.service, operation)
+        # try:
+        #     horribleString = function(self.verificationNum)
+        # except:
+        #     breakpoint()
         horribleString = function(self.verificationNum)
         objects = {}
         obj = None
