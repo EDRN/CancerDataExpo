@@ -54,9 +54,7 @@ The answer will then be in the result element of the response element of the env
 
 ## 🔧 Developing
 
-**👉 Note:** Plone 5.2.9 (used here) is not compatible with any Python newer than 3.8. Stick with 3.8.
-
-Do the following:
+**👉 Note:** Plone 5.2.9 (used in the Dockerfile) is not compatible with any Python newer than 3.8. Stick with 3.8. However, Plone 5.2.9 barely builds on macOS. 5.2.14 is a little closer, though, with the following instructions:
 ```console
 python3.8 -m venv venv
 venv/bin/pip install --upgrade pip build wheel zc.buildout setuptools==42.0.2 numpy==1.23.4
