@@ -85,11 +85,11 @@ class LabCASCollectionGraphGenerator(object):
     def generateGraph(self):
         context = aq_inner(self.context)
         graph = rdflib.Graph()
-        solr = Solr(context.labcasSolrURL + '/datasets', auth=(context.username, context.password))
+        solr = Solr(context.labcasSolrURL + '/datasets', auth=(context.username, context.password), verify=False)
         numDatasets = solr.search(q='Consortium:EDRN', rows=0).hits
-        solr = Solr(context.labcasSolrURL + '/files', auth=(context.username, context.password))
+        solr = Solr(context.labcasSolrURL + '/files', auth=(context.username, context.password), verify=False)
         numFiles = solr.search(q='Consortium:EDRN', rows=0).hits
-        solr = Solr(context.labcasSolrURL + '/collections', auth=(context.username, context.password))
+        solr = Solr(context.labcasSolrURL + '/collections', auth=(context.username, context.password), verify=False)
         results = solr.search(q='Consortium:EDRN', rows=999999)  # 😮 TODO This'll fail once we get to a million collections
         numCollections = results.hits
         for i in results:
