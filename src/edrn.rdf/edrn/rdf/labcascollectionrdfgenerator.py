@@ -91,8 +91,10 @@ class LabCASCollectionGraphGenerator(object):
         numFiles = solr.search(q='Consortium:EDRN', rows=0).hits
         solr = Solr(context.labcasSolrURL + '/collections', auth=(context.username, context.password), verify=False)
         # Strange, rows=999999 fails with a 400 error, but rows=99999 works; this is new behavior
-        # as of 2025-05-30
-        results = solr.search(q='Consortium:EDRN', rows=99999)  # 😮 TODO This'll fail once we get to 100k collections
+        # as of 2025-05-30 because the server is configured to limit the number of rows thanks to
+        # VDP-1645. We'll never have that many collections anyway, so I'm limiting the rows even
+        # further in case someone edits the ~/labcas.properties on edrn-labcas to make it even lower.
+        results = solr.search(q='Consortium:EDRN', rows=500)
         numCollections = results.hits
         for i in results:
             collectionID, name, consortia = i.get('id'), i.get('CollectionName', '«unknown»'), i.get('Consortium', [])
