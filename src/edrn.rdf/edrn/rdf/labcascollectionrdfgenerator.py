@@ -90,7 +90,9 @@ class LabCASCollectionGraphGenerator(object):
         solr = Solr(context.labcasSolrURL + '/files', auth=(context.username, context.password), verify=False)
         numFiles = solr.search(q='Consortium:EDRN', rows=0).hits
         solr = Solr(context.labcasSolrURL + '/collections', auth=(context.username, context.password), verify=False)
-        results = solr.search(q='Consortium:EDRN', rows=999999)  # 😮 TODO This'll fail once we get to a million collections
+        # Strange, rows=999999 fails with a 400 error, but rows=99999 works; this is new behavior
+        # as of 2025-05-30
+        results = solr.search(q='Consortium:EDRN', rows=99999)  # 😮 TODO This'll fail once we get to 100k collections
         numCollections = results.hits
         for i in results:
             collectionID, name, consortia = i.get('id'), i.get('CollectionName', '«unknown»'), i.get('Consortium', [])
